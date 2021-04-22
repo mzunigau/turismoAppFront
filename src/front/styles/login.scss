@@ -1,0 +1,48 @@
+.formulary{
+    background: rgba(0, -0, -0, -.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px black;
+    color: white;
+}
+.forgotPass{
+    background: none;
+    color: black;
+    font-weight: bold;
+    
+}
+
+.register{
+    color: black;
+    background: white;
+    padding: 10px;
+    transition: 0.5s ease-in;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    font-size: 16px;
+    font-weight: 700!important;
+}
+
+.signUp{
+    color: black;
+    background: white;
+    padding: 10px;
+    transition: 0.5s ease-in;
+    text-decoration-style: none;
+    text-decoration-line: none;
+    font-size: 16px;
+    font-weight: 700!important;
+}
+
+body{ 
+    background: url(https://fondosmil.com/fondo/74416.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    
+}
+
+label{
+ font-size: larger;
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

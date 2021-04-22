@@ -1,4 +1,4 @@
-import { Col, Card, Button } from "react-bootstrap";
+/*import { Col, Card, Button } from "react-bootstrap";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -45,4 +45,4 @@ DestinationCard.propTypes = {
 	id: PropTypes.number
 };
 
-export default DestinationCard;
+export default DestinationCard;*/
