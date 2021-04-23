@@ -32,7 +32,7 @@ db.init_app(app)
 
 # Allow CORS requests to this API
 CORS(app)
-jwt = JWTManager(app)
+#jwt = JWTManager(app)
 
 # add the admin
 setup_admin(app)
