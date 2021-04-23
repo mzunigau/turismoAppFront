@@ -19,8 +19,8 @@ class Usuario(db.Model):
     roles = db.relationship("Rol", secondary= roles_usuarios)
     categorias = db.relationship("Categoria", secondary= categorias_usuarios)
     sitios_favoritos = db.relationship("Sitio", secondary= sitios_usuarios)
-    comentarios = db.relationship("Comentario")
-    calificaciones = db.relationship("Calificacion")
+    comentarios = db.relationship("Comentario", backref="usuario")
+    calificaciones = db.relationship("Calificacion", backref="usuario")
     
 
     def __repr__(self):
@@ -40,11 +40,11 @@ class Sitio(db.Model):
     __tablename__='sitios'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
-    categorias = db.relationship("Categoria", secondary= categorias_sitios)
     dificultad_id = db.Column(db.Integer, db.ForeignKey('dificultades.id'))
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'))
-    comentarios = db.relationship("Comentario")
-    calificaciones = db.relationship("Calificacion")
+    categorias = db.relationship("Categoria", secondary= categorias_sitios)
+    comentarios = db.relationship("Comentario", backref="sitio")
+    calificaciones = db.relationship("Calificacion", backref="sitio")
 
     def __repr__(self):
         return '<Sitio %r>' % self.nombre
@@ -139,7 +139,7 @@ class Comentario(db.Model):
             "fecha": self.fecha           
         }
 
-class Calificion(db.Model):
+class Calificacion(db.Model):
     __tablename__='calificaciones'
     id = db.Column(db.Integer, primary_key=True)
     descripcion = db.Column(db.String(120), nullable=False)
@@ -148,7 +148,7 @@ class Calificion(db.Model):
     numero = db.Column(db.Integer,nullable=False)
 
     def __repr__(self):
-        return '<Comentario %r>' % self.nombre
+        return '<Calificacion %r>' % self.nombre
 
     def serialize(self):
         return {
