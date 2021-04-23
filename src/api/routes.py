@@ -5,9 +5,11 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Usuario, Sitio
 from api.utils import generate_sitemap, APIException
 
+
+
 api = Blueprint('api', __name__)
 
-@api.route('/', methods=['POST', 'GET'])
+@api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
     response_body = {
@@ -61,11 +63,11 @@ def handle_register_user(username):
 
 @api.route("/login", methods=["POST"])
 def create_token():
-    username = request.json.get("username", None)
+    email = request.json.get("email", None)
     password = request.json.get("password", None)
     # Query your database for username and password
     
-    user = User.query.filter_by(username=username, password=password).first()
+    user = Usuario.query.filter_by(email=email, password=password).first()
     if user is None:
         # the user was not found on the database
         return jsonify({"msg": "Bad username or password"}), 401
@@ -77,7 +79,7 @@ def create_token():
 
 @api.route('/sitios', methods=['GET'])
 #@jwt_required()
-def indexUsers():
-    usuarios = Sitio.query.all()
-    usuarios = list(map(lambda x: x.serialize(), usuarios))
-    return jsonify(usuarios), 200
+def indexSitios():
+    sitios = Sitio.query.all()
+    sitios = list(map(lambda x: x.serialize(), sitios))
+    return jsonify(sitios), 200
