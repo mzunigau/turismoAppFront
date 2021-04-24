@@ -74,3 +74,12 @@ def indexSitios():
     sitios = Sitio.query.all()
     sitios = list(map(lambda x: x.serialize(), sitios))
     return jsonify(sitios), 200
+
+@api.route('/sitios/<int:id>', methods=['DELETE'])
+def deleteSitios(id):
+    sitio = Sitio.query.get(id)
+    if sitio is None:
+        raise APIException('Site not found', status_code=404)
+    db.session.delete(sitio)
+    db.session.commit()
+    return jsonify(sitio), 200
