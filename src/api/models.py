@@ -45,6 +45,7 @@ class Sitio(db.Model):
     categorias = db.relationship("Categoria", secondary= categorias_sitios)
     comentarios = db.relationship("Comentario", backref="sitio")
     calificaciones = db.relationship("Calificacion", backref="sitio")
+    promedio = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Sitio %r>' % self.nombre

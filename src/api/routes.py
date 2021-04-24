@@ -1,11 +1,12 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
+import os
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Usuario, Sitio
 from api.utils import generate_sitemap, APIException
-
-
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -17,49 +18,6 @@ def handle_hello():
     }
 
     return jsonify(response_body), 200
-
-@api.route('/register/<username>', methods=['POST'])
-def handle_register_user(username):
-
-    headers = {
-        "Content-Type": "application/json"
-    }
-    #Chequeando si el usuario 
-    
-    requesting_user = User.query.filter_by(username=username).first()
-    if requesting_user:
-        username_id = requesting_user.id
-    else : 
-        username_id = None 
-
-           
-    if request.method == 'POST':
-        
-        print("HELLO Creando Usuario POST")
-                
-        if username_id:
-            
-            response_body = {
-                "status": "HTTP_400_BAD_REQUEST. Usuario ya existe..."
-            }
-            status_code = 400
-        
-        else:
-            print("Creando usuario")
-            user_pack = request.json
-            new_user = User(username,user_pack["email"],user_pack["nombre"],user_pack["password"],user_pack["edad"])
-            db.session.add(new_user)
-            db.session.commit()
-            response_body = {
-                "status": "Ok"
-            }
-            status_code = 200
-      
-    return make_response(
-        jsonify(response_body),
-        status_code,
-        headers
-    )
 
 @api.route("/login", methods=["POST"])
 def create_token():
@@ -76,9 +34,42 @@ def create_token():
     access_token = create_access_token(identity=user.id)
     return jsonify({ "token": access_token, "user_id": user.id })
 
+@api.route('/usuarios', methods=['POST'])
+def createUser():
+    body = request.get_json() # get the request body content
+    userNew = User(username=body['email'], nombre=body['nombre'], 
+    email=body['email'],edad=body['edad'],password=body['password'])
+    db.session.add(userNew)
+    db.session.commit()
+    #genera token
+    #access_token = create_access_token(identity=user.id)
+    return jsonify(serialize(userNew)), 200    
+
+@api.route('/usuarios/<int:id>', methods=['PUT'])
+def updateUser(id):
+    body = request.get_json()
+    user1 = usuario.query.get(id)
+    if user1 is None:
+        raise APIException('User not found', status_code=404)
+    db.session.commit()   
+    return "OK", 200
+
+@api.route('/usuarios/<int:id>', methods=['GET'])
+def getUser(id):
+    user = Usuario.query.get(id)
+    return jsonify(serialize(user)), 200        
+
+@api.route('/usuarios/<int:id>', methods=['DELETE'])
+def deleteUsers(id):
+    user = Usuario.query.get(id)
+    if user is None:
+        raise APIException('User not found', status_code=404)
+    db.session.delete(user)
+    db.session.commit()
+    return jsonify(user), 200
 
 @api.route('/sitios', methods=['GET'])
-#@jwt_required()
+@jwt_required()
 def indexSitios():
     sitios = Sitio.query.all()
     sitios = list(map(lambda x: x.serialize(), sitios))
