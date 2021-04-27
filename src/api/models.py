@@ -16,7 +16,7 @@ class Usuario(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
     edad = db.Column(db.Integer)
-    roles = db.relationship("Rol", secondary= roles_usuarios)
+    roles = db.relationship("Rol", secondary= roles_usuarios, back_populates="usuarios")
     categorias = db.relationship("Categoria", secondary= categorias_usuarios)
     sitios_favoritos = db.relationship("Sitio", secondary= sitios_usuarios)
     comentarios = db.relationship("Comentario", backref="usuario")
@@ -45,7 +45,6 @@ class Sitio(db.Model):
     categorias = db.relationship("Categoria", secondary= categorias_sitios)
     comentarios = db.relationship("Comentario", backref="sitio")
     calificaciones = db.relationship("Calificacion", backref="sitio")
-    promedio = db.Column(db.Integer)
 
     def __repr__(self):
         return '<Sitio %r>' % self.nombre
@@ -96,6 +95,8 @@ class Rol(db.Model):
     __tablename__='roles'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
+    usuarios = db.relationship("Usuario", secondary= roles_usuarios, back_populates="roles")
+
 
     def __repr__(self):
         return '<Rol %r>' % self.nombre
