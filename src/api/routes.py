@@ -36,6 +36,13 @@ def create_token():
 
 ##### USUARIOS #####
 
+@api.route('/usuarios', methods=['GET'])
+#@jwt_required()
+def listUsuarios():
+    usuario = Usuario.query.all()
+    usuario = list(map(lambda x: x.serialize(), usuario))
+    return jsonify(usuario), 200
+
 @api.route('/usuarios', methods=['POST'])
 def createUser():
     body = request.get_json() 
@@ -50,21 +57,58 @@ def createUser():
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 def updateUsuario(id):
     body = request.get_json()
-    usuario = Usuario.query.get(person_id)
+    usuario = Usuario.query.get(id)
     if usuario is None:
         raise APIException('Usuario not found', status_code=404)
     if "nombre" in body:
-        sitio.nombre = body["nombre"]
-    if "roles" in body:
-        sitio.nombre = body["nombre"]
+        usuario.nombre = body["nombre"]
 
+    if "email" in body:
+        usuario.email = body["email"]
+
+    if "password" in body:
+        usuario.password = body["password"]
+
+    if "edad" in body:
+        usuario.edad = body["edad"]
+
+    if "roles" in body:
+        for rol in body["roles"]:
+            rolAdd = Rol.query.get(rol["id"])
+            usuario.roles.append(rolAdd)
+
+    if "categorias" in body:
+        for cat in body["categorias"]:
+            catAdd = Categoria.query.get(cat["id"])
+            usuario.roles.append(rolAdd)
+
+    if "sitios_favoritos" in body:
+        for rol in body["sitios_favoritos"]:
+            rolAdd = Rol.query.get(rol["id"])
+            usuario.roles.append(rolAdd)
+
+    if "roles" in body:
+        for rol in body["roles"]:
+            rolAdd = Rol.query.get(rol["id"])
+            usuario.roles.append(rolAdd)
 
     db.session.commit()
- 
-    return "OK", 200
+    return jsonify(Usuario.serialize(usuario)), 200
+
+@api.route('/usuarios/rol/<int:id>', methods=['PUT'])
+def deleteRolUsuario(id):
+    body = request.get_json()
+    usuario = Usuario.query.get(id)
+    if usuario is None:
+        raise APIException('Usuario not found', status_code=404)
+    if "id" in body:
+        roles = [rol for rol in usuario.roles if rol['id'] == body["id"]]
+        usuario.roles = roles
+    db.session.commit()
+    return jsonify(Usuario.serialize(usuario)), 200
 
 @api.route('/usuarios/<int:id>', methods=['GET'])
-def getUser(id):
+def getUsuario(id):
     user = Usuario.query.get(id)
     return jsonify(serialize(user)), 200        
 
@@ -76,6 +120,7 @@ def deleteUsers(id):
     db.session.delete(user)
     db.session.commit()
     return jsonify(user), 200
+
 
 ###### Sitios ######
 

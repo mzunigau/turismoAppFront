@@ -17,7 +17,7 @@ class Usuario(db.Model):
     password = db.Column(db.String(120), nullable=False)
     edad = db.Column(db.Integer)
     roles = db.relationship("Rol", secondary= roles_usuarios, back_populates="usuarios")
-    categorias = db.relationship("Categoria", secondary= categorias_usuarios)
+    categorias = db.relationship("Categoria", secondary= categorias_usuarios ,back_populates="usuarios")
     sitios_favoritos = db.relationship("Sitio", secondary= sitios_usuarios)
     comentarios = db.relationship("Comentario", backref="usuario")
     calificaciones = db.relationship("Calificacion", backref="usuario")
@@ -111,6 +111,8 @@ class Categoria(db.Model):
     __tablename__='categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
+    usuarios = db.relationship("Usuario", secondary= roles_usuarios, back_populates="categorias")
+
 
     def __repr__(self):
         return '<Categoria %r>' % self.nombre
