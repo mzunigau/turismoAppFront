@@ -54,6 +54,34 @@ def createUser():
     #access_token = create_access_token(identity=user.id)
     return jsonify(serialize(userNew)), 200    
 
+@api.route('/register', methods=['POST'])
+def register():
+    try:
+        email = request.json.get('email', None)
+        password = request.json.get('password', None)
+        nombre = request.json.get('nombre', None)
+        
+        if not email:
+            return 'Missing email', 400
+        if not password:
+            return 'Missing password', 400
+        
+        hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+        user = User(email=email, hash=hashed)
+        db.session.add(user)
+        db.session.commit()
+
+        access_token = create_access_token(identity={"email": email})
+        return {"access_token": access_token}, 200
+    except IntegrityError:
+        # the rollback func reverts the changes made to the db ( so if an error happens after we commited changes they will be reverted )
+        db.session.rollback()
+        return 'User Already Exists', 400
+    except AttributeError:
+        return 'Provide an Email and Password in JSON format in the request body', 400
+
+
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 def updateUsuario(id):
     body = request.get_json()
@@ -83,14 +111,14 @@ def updateUsuario(id):
             usuario.roles.append(rolAdd)
 
     if "sitios_favoritos" in body:
-        for rol in body["sitios_favoritos"]:
-            rolAdd = Rol.query.get(rol["id"])
-            usuario.roles.append(rolAdd)
+        for fav in body["sitios_favoritos"]:
+            favAdd = Rol.query.get(rol["fav"])
+            usuario.sitios_favoritos.append(favAdd)
 
-    if "roles" in body:
-        for rol in body["roles"]:
-            rolAdd = Rol.query.get(rol["id"])
-            usuario.roles.append(rolAdd)
+    if "comentarios" in body:
+        for comentarios in body["comentarios"]:
+            comentariosAdd = Rol.query.get(comentarios["id"])
+            usuario.comentarios.append(comentariosAdd)
 
     db.session.commit()
     return jsonify(Usuario.serialize(usuario)), 200
@@ -102,15 +130,15 @@ def deleteRolUsuario(id):
     if usuario is None:
         raise APIException('Usuario not found', status_code=404)
     if "id" in body:
-        roles = [rol for rol in usuario.roles if rol['id'] == body["id"]]
-        usuario.roles = roles
+        rol = Rol.query.get(id)
+        usuario.roles.remove(rol)
     db.session.commit()
     return jsonify(Usuario.serialize(usuario)), 200
 
 @api.route('/usuarios/<int:id>', methods=['GET'])
 def getUsuario(id):
     user = Usuario.query.get(id)
-    return jsonify(serialize(user)), 200        
+    return jsonify(Usuario.serialize(user)), 200        
 
 @api.route('/usuarios/<int:id>', methods=['DELETE'])
 def deleteUsers(id):
@@ -123,6 +151,18 @@ def deleteUsers(id):
 
 
 ###### Sitios ######
+
+@api.route('/sitios/categoria/<int:id>', methods=['GET'])
+@jwt_required()
+def listSitios(id):
+    Location.query.\
+    filter_by(location_name='Cairo').\
+    join(Country).\
+    filter_by(country_id=67).\
+    first()
+    sitios = Sitio.query.filter_by(categorias.id)
+    sitios = list(map(lambda x: x.serialize(), sitios))
+    return jsonify(sitios), 200
 
 @api.route('/sitios', methods=['GET'])
 #@jwt_required()
@@ -141,6 +181,8 @@ def createSitio():
     #genera token
     #access_token = create_access_token(identity=user.id)
     return jsonify(serialize(sitioNew)), 200 
+
+
 
 @api.route('/sitios/<int:id>', methods=['PUT'])
 def updateSitio(id):
@@ -209,10 +251,19 @@ def listDificultades():
     dificultades = list(map(lambda x: x.serialize(), dificultades))
     return jsonify(dificultades), 200
 
-
-
 ###### Rol ######
 
+@api.route('/roles', methods=['GET'])
+#@jwt_required()
+def listRoles():
+    roles = Rol.query.all()
+    roles = list(map(lambda x: x.serialize(), roles))
+    return jsonify(roles), 200
+
+@api.route('/roles/<int:id>', methods=['GET'])
+def getRol(id):
+    roles = Rol.query.get(id)
+    return jsonify(serialize(roles)), 200   
 
 ###### Categoria ######
 

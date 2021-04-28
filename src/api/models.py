@@ -17,7 +17,7 @@ class Usuario(db.Model):
     password = db.Column(db.String(120), nullable=False)
     edad = db.Column(db.Integer)
     roles = db.relationship("Rol", secondary= roles_usuarios, back_populates="usuarios")
-    categorias = db.relationship("Categoria", secondary= categorias_usuarios ,back_populates="usuarios")
+    categorias = db.relationship("Categoria", secondary= categorias_usuarios)
     sitios_favoritos = db.relationship("Sitio", secondary= sitios_usuarios)
     comentarios = db.relationship("Comentario", backref="usuario")
     calificaciones = db.relationship("Calificacion", backref="usuario")
@@ -33,7 +33,10 @@ class Usuario(db.Model):
             "nombre": self.nombre,
             "edad": self.edad,
             "roles": list(map(lambda x: x.serialize(), self.roles)),
-            "categorias": list(map(lambda x: x.serialize(), self.categorias))
+            "categorias": list(map(lambda x: x.serialize(), self.categorias)),
+            "sitios_favoritos": list(map(lambda x: x.serialize(), self.sitios_favoritos)),
+            "comentarios": list(map(lambda x: x.serialize(), self.comentarios)),
+            "calificaciones": list(map(lambda x: x.serialize(), self.calificaciones)),
             # do not serialize the password, its a security breach
         }
 class Sitio(db.Model):
@@ -45,6 +48,7 @@ class Sitio(db.Model):
     categorias = db.relationship("Categoria", secondary= categorias_sitios)
     comentarios = db.relationship("Comentario", backref="sitio")
     calificaciones = db.relationship("Calificacion", backref="sitio")
+    
 
     def __repr__(self):
         return '<Sitio %r>' % self.nombre
@@ -111,7 +115,6 @@ class Categoria(db.Model):
     __tablename__='categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
-    usuarios = db.relationship("Usuario", secondary= roles_usuarios, back_populates="categorias")
 
 
     def __repr__(self):
