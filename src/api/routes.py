@@ -154,15 +154,16 @@ def deleteUsers(id):
 
 @api.route('/sitios/categoria/<int:id>', methods=['GET'])
 @jwt_required()
-def listSitios(id):
-    Location.query.\
-    filter_by(location_name='Cairo').\
-    join(Country).\
-    filter_by(country_id=67).\
-    first()
-    sitios = Sitio.query.filter_by(categorias.id)
-    sitios = list(map(lambda x: x.serialize(), sitios))
-    return jsonify(sitios), 200
+def listSitiosByCategoria(id):
+    # Sitios.query.\
+    # filter_by(location_name='Cairo').\
+    # join(Country).\
+    # filter_by(country_id=67).\
+    # first()
+    # sitios = Sitio.query.filter_by(categorias.id)
+    # sitios = list(map(lambda x: x.serialize(), sitios))
+    #return jsonify(sitios), 200
+    return "OK", 200
 
 @api.route('/sitios', methods=['GET'])
 #@jwt_required()
