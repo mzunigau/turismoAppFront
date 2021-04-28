@@ -5,6 +5,7 @@ import ScrollToTop from "./component/scrollToTop";
 import Login from "./pages/login";
 import SignUp from "./pages/signUp";
 import ForgotPass from "./pages/forgotPass";
+import Profile from "./pages/profile";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
@@ -29,6 +30,7 @@ const Layout = () => {
 						<Route exact path="/signUp" component={SignUp} />
 						<Route exact path="/forgotPass" component={ForgotPass} />
 						<Route exact path="/home" component={Home} />
+						<Route exact path="/profile" component={Profile} />
 
 						<Route exact path="/demo">
 							<Demo />

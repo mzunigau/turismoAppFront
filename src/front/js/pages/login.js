@@ -7,7 +7,7 @@ import "../../styles/login.scss";
 
 const Login = () => {
 	return (
-		<>
+		<div id="body-login">
 			<Container id="contenedor1" className="text-center p-3">
 				<Image src={LogoImg} width={200} height={200} />
 				<Row className="justify-content-center">
@@ -44,7 +44,7 @@ const Login = () => {
 					</Col>
 				</Row>
 			</Container>
-		</>
+		</div>
 	);
 };
 
