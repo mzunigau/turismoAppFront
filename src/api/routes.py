@@ -46,7 +46,7 @@ def listUsuarios():
 @api.route('/usuarios', methods=['POST'])
 def createUser():
     body = request.get_json() 
-    userNew = Usuario(username=body['email'], nombre=body['nombre'], 
+    userNew = Usuario(username=body['username'], nombre=body['nombre'], 
     email=body['email'],edad=body['edad'],password=body['password'])
     db.session.add(userNew)
     db.session.commit()
@@ -152,18 +152,23 @@ def deleteUsers(id):
 
 ###### Sitios ######
 
-@api.route('/sitios/categoria/<int:id>', methods=['GET'])
-@jwt_required()
-def listSitiosByCategoria(id):
-    # Sitios.query.\
-    # filter_by(location_name='Cairo').\
-    # join(Country).\
-    # filter_by(country_id=67).\
-    # first()
-    # sitios = Sitio.query.filter_by(categorias.id)
-    # sitios = list(map(lambda x: x.serialize(), sitios))
-    #return jsonify(sitios), 200
-    return "OK", 200
+@api.route('/sitios/categoria/<int:cat_id>', methods=['GET'])
+#@jwt_required()
+def listSitiosByCategoria(cat_id):
+
+    sitios = db.session.query(Sitio).join(Categoria).filter(Categoria.id.in_(cat_id)).all()
+    # sitios = Sitio.query.\
+    # select_from(Categoria).\
+    # filter( Categoria.id=1 ).all()
+
+    # sitios = Sitio.query.filter(Categoria.id.cat_id).all()
+    # query = Sitio.query.join(Sitio, Categoria)
+
+    # avail_tags = query.filter_by(Categoria.id).all()
+
+
+    sitios = list(map(lambda x: x.serialize(), avail_tags))
+    return jsonify(sitios), 200
 
 @api.route('/sitios', methods=['GET'])
 #@jwt_required()

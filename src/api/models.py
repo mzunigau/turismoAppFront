@@ -45,7 +45,7 @@ class Sitio(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     dificultad_id = db.Column(db.Integer, db.ForeignKey('dificultades.id'))
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'))
-    categorias = db.relationship("Categoria", secondary= categorias_sitios)
+    categorias = db.relationship("Categoria", secondary= categorias_sitios, back_populates="sitios")
     comentarios = db.relationship("Comentario", backref="sitio")
     calificaciones = db.relationship("Calificacion", backref="sitio")
     
@@ -115,6 +115,7 @@ class Categoria(db.Model):
     __tablename__='categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
+    sitios = db.relationship("Sitio", secondary= categorias_sitios, back_populates="categorias")
 
 
     def __repr__(self):
