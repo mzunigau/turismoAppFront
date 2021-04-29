@@ -1,11 +1,14 @@
 import React from "react";
-import { Card, CardDeck } from "react-bootstrap";
+import { Card, CardDeck, Button } from "react-bootstrap";
 
 const CardCatB = () => {
 	return (
 		<CardDeck>
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+				/>
 				<Card.Body>
 					<Card.Title>Familiar</Card.Title>
 					<Card.Text>
@@ -14,12 +17,15 @@ const CardCatB = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Familiar</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+				/>
 				<Card.Body>
 					<Card.Title>Amigos</Card.Title>
 					<Card.Text>
@@ -27,12 +33,15 @@ const CardCatB = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Amigos</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+				/>
 				<Card.Body>
 					<Card.Title>Negocios</Card.Title>
 					<Card.Text>
@@ -41,7 +50,7 @@ const CardCatB = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Negocios</Button>
 				</Card.Footer>
 			</Card>
 		</CardDeck>

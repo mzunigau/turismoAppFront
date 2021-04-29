@@ -1,11 +1,14 @@
 import React from "react";
-import { Card, CardDeck } from "react-bootstrap";
+import { Card, CardDeck, Button } from "react-bootstrap";
 
 const CardCatC = () => {
 	return (
 		<CardDeck>
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafivVL1TdqrgORJOdav9YarRb441Nz7pBMQ&usqp=CAU"
+				/>
 				<Card.Body>
 					<Card.Title>Cultural</Card.Title>
 					<Card.Text>
@@ -14,25 +17,31 @@ const CardCatC = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Cultural</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafivVL1TdqrgORJOdav9YarRb441Nz7pBMQ&usqp=CAU"
+				/>
 				<Card.Body>
-					<Card.Title>Gastrónomico</Card.Title>
+					<Card.Title>Gastronómico</Card.Title>
 					<Card.Text>
 						This card has supporting text below as a natural lead-in to additional content.{" "}
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Gastronómico</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTafivVL1TdqrgORJOdav9YarRb441Nz7pBMQ&usqp=CAU"
+				/>
 				<Card.Body>
 					<Card.Title>Rural</Card.Title>
 					<Card.Text>
@@ -41,7 +50,7 @@ const CardCatC = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Rural</Button>
 				</Card.Footer>
 			</Card>
 		</CardDeck>

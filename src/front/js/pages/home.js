@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.scss";
 
 import CarouselCar from "../component/CarouselCat/carouselCat";
+import ButtonCat from "../component/ButtonCat/buttonCat";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -11,6 +12,8 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			<h1>Costa Rica Ride</h1>
 			<CarouselCar />
+			<h1>Tabs Categorías Haykel</h1>
+			<ButtonCat />
 		</div>
 	);
 };

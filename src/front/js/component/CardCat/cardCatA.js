@@ -1,11 +1,14 @@
 import React from "react";
-import { Card, CardDeck } from "react-bootstrap";
+import { Card, CardDeck, Button } from "react-bootstrap";
 
 const CardCatA = () => {
 	return (
 		<CardDeck>
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+				/>
 				<Card.Body>
 					<Card.Title>Aventura</Card.Title>
 					<Card.Text>
@@ -14,12 +17,15 @@ const CardCatA = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Aventura</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+				/>
 				<Card.Body>
 					<Card.Title>Relax</Card.Title>
 					<Card.Text>
@@ -27,12 +33,15 @@ const CardCatA = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Relax</Button>
 				</Card.Footer>
 			</Card>
 
 			<Card>
-				<Card.Img variant="top" src="holder.js/100px160" />
+				<Card.Img
+					variant="top"
+					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+				/>
 				<Card.Body>
 					<Card.Title>Deportivo</Card.Title>
 					<Card.Text>
@@ -41,7 +50,7 @@ const CardCatA = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">Last updated 3 mins ago</small>
+					<Button variant="primary">Ir a Deportivo</Button>
 				</Card.Footer>
 			</Card>
 		</CardDeck>
