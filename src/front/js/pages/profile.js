@@ -60,15 +60,16 @@ const Profile = () => {
 							</div>
 						</div>
 					</div>
+
+					<div className="description col-md-11 ml-4">
+						<h2>About me:</h2>
+						<p>
+							<span>
+								<strong>I am a passionate tourist, looking for new experiences</strong>
+							</span>{" "}
+						</p>
+					</div>
 				</Row>
-				<div className="description col-md-12">
-					<h2>About me:</h2>
-					<p>
-						<span>
-							<strong>I am a passionate tourist, looking for new experiences</strong>
-						</span>{" "}
-					</p>
-				</div>
 			</Container>
 		</div>
 	);

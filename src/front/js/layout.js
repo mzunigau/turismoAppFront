@@ -26,7 +26,7 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={Login} />
+						<Route exact path="/login" component={Login} />
 						<Route exact path="/signUp" component={SignUp} />
 						<Route exact path="/forgotPass" component={ForgotPass} />
 						<Route exact path="/home" component={Home} />
