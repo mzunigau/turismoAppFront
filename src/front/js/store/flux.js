@@ -15,7 +15,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-emerald-tarsier-lsmk3bfk.ws-us03.gitpod.io/api"
+			newUrl: "https://3001-emerald-tarsier-lsmk3bfk.ws-us03.gitpod.io/api",
+			register: false
 		},
 
 		actions: {
@@ -77,6 +78,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} else {
 					setStore({ login: false });
 				}
+			},
+
+			registerInit: (email, username, password) => {
+				const store = getStore();
+				console.log(email, username, password, "estoy dentro");
+				fetch(`${store.newUrl}/register`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					mode: "no-cors",
+					body: JSON.stringify({ email: email, username: username, password: password })
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ register: true });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
 			}
 		}
 	};
