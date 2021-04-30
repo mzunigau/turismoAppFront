@@ -12,4 +12,4 @@ import "../styles/index.scss";
 import Layout from "./layout";
 
 //render your react application
-ReactDOM.render(<Layout />, document.querySelector("#app"));
+import home from "./pages/homeCatDest";
