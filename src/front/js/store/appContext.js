@@ -18,6 +18,11 @@ const injectContext = PassedComponent => {
 			})
 		);
 
+		/*	useEffect(() => {
+			state.actions.getDestinationData();
+			state.actions.getlocationData();
+		}, []);*/
+
 		return (
 			<Context.Provider value={state}>
 				<PassedComponent {...props} />
