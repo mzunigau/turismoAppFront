@@ -10,6 +10,7 @@ from api.utils import APIException, generate_sitemap
 from api.models import db
 from api.routes import api
 from api.admin import setup_admin
+from flask_jwt_extended import JWTManager
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
@@ -28,7 +29,10 @@ MIGRATE = Migrate(app, db)
 db.init_app(app)
 
 # Allow CORS requests to this API
+app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET") # Change this!
+jwt = JWTManager(app)
 CORS(app)
+
 
 # add the admin
 setup_admin(app)
