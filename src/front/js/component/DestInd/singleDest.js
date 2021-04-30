@@ -71,17 +71,10 @@ export const Single = () => {
 					</p>
 				</div>
 				<div>
-					<div id="fb-root"></div>
-					<script
-						async
-						defer
-						crossOrigin="anonymous"
-						src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v10.0"
-						nonce="wIJbAWbv"></script>
 					<div
 						className="fb-comments"
-						data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-						data-width="40%"
+						data-href="https://3000-ivory-gamefowl-9wtakjp3.ws-us04.gitpod.io/#"
+						data-width="100"
 						data-numposts="4"></div>
 				</div>
 			</main>

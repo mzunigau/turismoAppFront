@@ -4,6 +4,7 @@ import "../../styles/home.scss";
 
 import CarouselCat from "../component/CarouselCat/carouselCat";
 import ButtonCat from "../component/ButtonCat/buttonCat";
+import PilssCatHome from "../component/PillsCatHome/PillsCatHome";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -13,6 +14,7 @@ export const Home = () => {
 			<h1>Costa Rica Ride</h1>
 			<CarouselCat />
 			<h1>Tabs Categorías Haykel</h1>
+			<PilssCatHome />
 			<ButtonCat />
 		</div>
 	);
