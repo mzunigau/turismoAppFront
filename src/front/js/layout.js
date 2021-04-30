@@ -7,7 +7,7 @@ import Register from "./pages/register";
 import ForgotPass from "./pages/forgotPass";
 import Profile from "./pages/profile";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
+// import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
@@ -26,15 +26,16 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={Login} />
+						<Route exact path="/" component={Home} />
+						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/forgotPass" component={ForgotPass} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/profile" component={Profile} />
 
-						<Route exact path="/demo">
+						{/* <Route exact path="/demo">
 							<Demo />
-						</Route>
+						</Route> */}
 						<Route exact path="/single/:theid">
 							<Single />
 						</Route>
