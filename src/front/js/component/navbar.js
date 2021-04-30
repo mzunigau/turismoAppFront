@@ -5,7 +5,7 @@ import DropLogin from "./DropLogin/dropLogin";
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar navbar-light bg-light">
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1">CRide</span>
 			</Link>
