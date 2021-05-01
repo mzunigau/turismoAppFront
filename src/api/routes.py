@@ -50,8 +50,23 @@ def listUsuarios():
 def createUser():
     user = get_jwt_identity()
     body = request.get_json() 
-    userNew = Usuario(username=body['username'], nombre=body['nombre'], 
-    email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
+    
+    if "nombre" in body:
+        nombre = body["nombre"]
+
+    if "email" in body:
+        email = body["email"]
+
+    if "password" in body:
+        password = body["password"]
+
+    if "edad" in body:
+        edad = body["edad"]
+
+    if "country_id" in body:
+        country_id = body["country_id"]
+
+    userNew = Usuario(nombre, email, password)
     db.session.add(userNew)
     db.session.commit()
     return jsonify(serialize(userNew)), 200    
