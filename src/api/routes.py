@@ -64,10 +64,10 @@ def createUser():
     if "country_id" in body:
         country_id = body["country_id"]
 
-    userNew = Usuario(nombre, email, password)
+    userNew = Usuario(nombre=nombre, email=email, password=password)
     db.session.add(userNew)
     db.session.commit()
-    return jsonify(serialize(userNew)), 200    
+    return jsonify(Usuario.serialize(userNew)), 200    
 
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 @jwt_required()
