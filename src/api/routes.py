@@ -50,11 +50,9 @@ def createUser():
     user = get_jwt_identity()
     body = request.get_json() 
     userNew = Usuario(username=body['username'], nombre=body['nombre'], 
-    email=body['email'],edad=body['edad'],password=body['password'])
+    email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
     db.session.add(userNew)
     db.session.commit()
-    #genera token
-    #access_token = create_access_token(identity=user.id)
     return jsonify(serialize(userNew)), 200    
 
 @api.route('/usuarios/<int:id>', methods=['PUT'])
@@ -77,8 +75,8 @@ def updateUsuario(id):
     if "edad" in body:
         usuario.edad = body["edad"]
 
-    if "country" in body:
-        usuario.country_id = body["country"]
+    if "country_id" in body:
+        usuario.country_id = body["country_id"]
 
     if "roles" in body:
         for rol in body["roles"]:
@@ -166,7 +164,10 @@ def deleteUser(id):
         raise APIException('User not found', status_code=404)
     db.session.delete(usuario)
     db.session.commit()
-    return jsonify(user), 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 #################################################
 ##############    SITIOS   ######################
@@ -204,6 +205,9 @@ def createSitio():
         tipo_costo= body['tipo_costo'],
         costo_min= body['costo_min'],
         costo_max= body['costo_max'],
+        lat= body['lat'],
+        lon= body['lon'],
+        gmaps= body['gmaps'],
         dificultad_id= body['dificultad_id'],
         provincia_id= body['provincia_id'],
         )
@@ -237,6 +241,15 @@ def updateSitio(id):
 
     if "costo_max" in body:
         sitio.costo_max = body["costo_max"]
+
+    if "lat" in body:
+        sitio.lan = body["lan"]
+
+    if "lon" in body:
+        sitio.lon = body["lon"]
+
+    if "gmaps" in body:
+        sitio.gmaps = body["gmaps"]
 
     if "dificultad_id" in body:
         sitio.dificultad_id = body["dificultad_id"]
@@ -288,7 +301,10 @@ def deleteSitio(id):
         raise APIException('Site not found', status_code=404)
     db.session.delete(sitio)
     db.session.commit()
-    return jsonify(sitio), 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 ##########   PROVINCIA   ##############
 #######################################
@@ -312,12 +328,10 @@ def getProvincia(id):
 @jwt_required()
 def createProvincia():
     token = get_jwt_identity()
-    body = request.get_json() # get the request body content
+    body = request.get_json() 
     provinciaNew = Provincia(nombre=body['nombre'])
     db.session.add(provinciaNew)
     db.session.commit()
-    #genera token
-    #access_token = create_access_token(identity=user.id)
     return jsonify(Provincia.serialize(provinciaNew)), 200  
 
 @api.route('/provincias/<int:id>', methods=['DELETE'])
@@ -403,7 +417,10 @@ def deleteRoles(id):
         raise APIException('rol not found', status_code=404)
     db.session.delete(rol)
     db.session.commit()
-    return "OK", 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 ##########   CATEGORIA   ##############
 #######################################
@@ -454,7 +471,10 @@ def deleteCategoria(id):
         raise APIException('Category not found', status_code=404)
     db.session.delete(cat)
     db.session.commit()
-    return "OK", 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 
 
@@ -470,7 +490,10 @@ def deleteComentario(id):
         raise APIException('comentario not found', status_code=404)
     db.session.delete(comentario)
     db.session.commit()
-    return "OK", 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 
 ##########  CALIFICACIONES ##############
@@ -485,7 +508,10 @@ def deleteCalificacion(id):
         raise APIException('calificacion not found', status_code=404)
     db.session.delete(calificacion)
     db.session.commit()
-    return "OK", 200
+    response_body = {
+        "status": "OK"
+        }
+    return response_body, 200
 
 
 
