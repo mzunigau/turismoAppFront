@@ -17,7 +17,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us04.gitpod.io/api",
 			register: false,
-			categorias: []
+			categorias: [],
+			logOut: true
 		},
 
 		actions: {
@@ -47,6 +48,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			logOut: () => {
+				localStorage.removeItem("token");
+				const store = getStore();
+				store.logOut = false;
+			},
 
 			loginInit: (email, password) => {
 				const store = getStore();
@@ -59,6 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
+						store.logOut = true;
 						localStorage.setItem("token", data.token);
 						setStore({ email: email });
 						console.log(email);
