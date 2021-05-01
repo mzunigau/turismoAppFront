@@ -46,11 +46,9 @@ def listUsuarios():
     return jsonify(usuario), 200
 
 @api.route('/usuarios', methods=['POST'])
-@jwt_required()
 def createUser():
-    user = get_jwt_identity()
     body = request.get_json() 
-    
+
     if "nombre" in body:
         nombre = body["nombre"]
 
