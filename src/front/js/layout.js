@@ -7,6 +7,7 @@ import Register from "./pages/register";
 import ForgotPass from "./pages/forgotPass";
 import Profile from "./pages/profile";
 import { Home } from "./pages/home";
+import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";

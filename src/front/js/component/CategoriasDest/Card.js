@@ -18,7 +18,7 @@ export function Card() {
 					<a href="#" className="btn btn-primary">
 						+info
 					</a>
-                    <a href="#" className="btn btn-primary">
+					<a href="#" className="btn btn-primary">
 						♥
 					</a>
 				</div>
