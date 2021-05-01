@@ -7,6 +7,8 @@ from api.models import db, Usuario, Sitio, Provincia, Dificultad, Categoria, Com
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
+import random
+import string
 
 api = Blueprint('api', __name__)
 
@@ -514,6 +516,28 @@ def deleteCalificacion(id):
     return response_body, 200
 
 
+##########  EMAIL RECOVERY  #############
+#########################################
+
+
+# URL GENERE UN NUEVO PASSWORD y ENVIE UN CORREO PARA CAMBIAR LA CONTRASEÑA
+def get_random_string(length):
+    # choose from all lowercase letter
+    letters = string.ascii_lowercase
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    print("Random string of length", length, "is:", result_str)
+
+@api.route('/email/<int:email>', methods=['PUT'])
+def passwordRecovery(email):
+    body = request.get_json()
+    usuario = Usuario.query.filter_by(email=email)
+    if usuario is None:
+        raise APIException('Usuario not found', status_code=404)
+    usuario.password = get_random_string(6)
+    db.session.commit()
+    #Enviar email con el password y el endpoint para cambiar el password
+    
+    return jsonify(Usuario.serialize(usuario)), 200
 
 
 
