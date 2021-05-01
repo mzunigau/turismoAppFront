@@ -2,16 +2,15 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+import random
+import string
 from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Usuario, Sitio, Provincia, Dificultad, Categoria, Comentario, Calificacion, Rol, Facilidad, Galeria
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import jwt_required, get_jwt_identity
-import random
-import string
 
 api = Blueprint('api', __name__)
-
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
 
@@ -536,7 +535,7 @@ def passwordRecovery(email):
     usuario.password = get_random_string(6)
     db.session.commit()
     #Enviar email con el password y el endpoint para cambiar el password
-    
+
     return jsonify(Usuario.serialize(usuario)), 200
 
 
