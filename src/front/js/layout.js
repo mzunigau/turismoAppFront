@@ -32,6 +32,7 @@ const Layout = () => {
 						<Route exact path="/forgotPass" component={ForgotPass} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/profile" component={Profile} />
+						<Route exact path="/homeCatDest" component={HomeCatDest} />
 
 						{/* <Route exact path="/demo">
 							<Demo />

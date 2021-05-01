@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardDeck, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CardCatA = () => {
 	return (
@@ -17,7 +18,9 @@ const CardCatA = () => {
 					</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<Button variant="primary">Ir a Playa</Button>
+					<Link to="/homeCatDest">
+						<Button variant="primary">Ir a Playa</Button>
+					</Link>
 				</Card.Footer>
 			</Card>
 
