@@ -19,9 +19,6 @@ export function Card() {
 						+info
 					</a>
                     <a href="#" className="btn btn-primary">
-						&#9825
-					</a>
-                    <a href="#" className="btn btn-primary">
 						♥
 					</a>
 				</div>
