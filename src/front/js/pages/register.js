@@ -9,7 +9,7 @@ const Register = () => {
 	const { store, actions } = useContext(Context);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [username, setUsername] = useState("");
+	const [name, setname] = useState("");
 
 	const history = useHistory();
 
@@ -43,7 +43,7 @@ const Register = () => {
 									type="text"
 									className="form-control"
 									placeholder="Username"
-									onChange={e => setUsername(e.target.value)}
+									onChange={e => setname(e.target.value)}
 								/>
 							</FormGroup>
 							<FormGroup className="mx-sm-4 pb-3">
@@ -68,7 +68,7 @@ const Register = () => {
 								<Button
 									className="btn btn-block signup"
 									onClick={() => {
-										actions.registerInit(email, username, password);
+										actions.registerInit(email, name, password);
 									}}>
 									Register
 								</Button>

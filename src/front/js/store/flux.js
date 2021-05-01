@@ -15,8 +15,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-emerald-tarsier-lsmk3bfk.ws-us03.gitpod.io/api",
-			register: false
+			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us04.gitpod.io/api",
+			register: false,
+			categorias: []
 		},
 
 		actions: {
@@ -58,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
-						localStorage.setItem("token", data);
+						localStorage.setItem("token", data.token);
 						setStore({ email: email });
 						console.log(email);
 						window.location.reload();
@@ -69,25 +70,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			getToken: () => {
-				let store = getStore();
-				let token = localStorage.getItem("token");
-
-				if (token && token.length > 0) {
-					setStore({ login: true });
-				} else {
-					setStore({ login: false });
-				}
-			},
-
-			registerInit: (email, username, password) => {
+			registerInit: (email, nombre, password) => {
 				const store = getStore();
-				console.log(email, username, password, "estoy dentro");
+				console.log(email, nombre, password, "estoy dentro");
 				fetch(`${store.newUrl}/usuarios`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
-					mode: "no-cors",
-					body: JSON.stringify({ email: email, username: username, password: password })
+					body: JSON.stringify({ email: email, nombre: nombre, password: password })
 				})
 					.then(response => {
 						return response.json();
@@ -98,6 +87,60 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					.catch(err => {
 						console.log("error", err);
+					});
+			},
+
+			getToken: () => {
+				let store = getStore();
+				let token = localStorage.getItem("token");
+				console.log(token, "este es el token");
+				if (token && token.length > 0) {
+					setStore({ login: true });
+				} else {
+					setStore({ login: false });
+				}
+			},
+
+			getCategorias: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/categorias`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ categorias: data.result.categorias });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			getCharacters: async () => {
+				await fetch(
+					{ newURL },
+					{
+						method: "GET",
+						headers: {
+							"Content-Type": "application/json",
+							Accept: "application/json"
+						}
+					}
+				)
+					.then(function(response) {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ peoples: data.results });
+						localStorage.setItem("people", JSON.stringify({ peoples: data.results }));
 					});
 			}
 		}
