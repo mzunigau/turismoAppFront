@@ -189,13 +189,13 @@ def deleteUser(id):
 
 
 #LISTAR POR CATEGORIA
-@api.route('/sitios/categoria/<int:cat_id>', methods=['GET'])
-@jwt_required()
-def listSitiosByCategoria(cat_id):
-    token = get_jwt_identity()
-    query = db.session.query(Sitio).filter(Sitio.categorias.any(id=cat_id))
-    sitios = list(map(lambda x: x.serialize(), query))
-    return jsonify(sitios), 200
+# @api.route('/sitios/categoria/<int:cat_id>', methods=['GET'])
+# @jwt_required()
+# def listSitiosByCategoria(cat_id):
+#     token = get_jwt_identity()
+#     query = db.session.query(Sitio).filter(Sitio.categorias.any(id=cat_id))
+#     sitios = list(map(lambda x: x.serialize(), query))
+#     return jsonify(sitios), 200
 
 #LISTAR TODOS LOS SITIOS
 @api.route('/sitios', methods=['GET'])
@@ -281,10 +281,10 @@ def updateSitio(id):
             calAdd = Calificacion.query.get(cal["id"])
             sitio.calificaciones.append(calAdd)
     
-    if "categorias" in body:
-        for cat in body["categorias"]:
-            catAdd = Categoria.query.get(cat["id"])
-            sitio.categorias.append(catAdd)
+    # if "categorias" in body:
+    #     for cat in body["categorias"]:
+    #         catAdd = Categoria.query.get(cat["id"])
+    #         sitio.categorias.append(catAdd)
     
     if "galerias" in body:
         for gal in body["galerias"]:
