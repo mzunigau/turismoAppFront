@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			registerInit: (email, username, password) => {
 				const store = getStore();
 				console.log(email, username, password, "estoy dentro");
-				fetch(`${store.newUrl}/register`, {
+				fetch(`${store.newUrl}/usuarios`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					mode: "no-cors",
