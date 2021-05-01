@@ -432,7 +432,7 @@ def listCategorias():
     token = get_jwt_identity()
     categorias = Categoria.query.all()
     categorias = list(map(lambda x: x.serialize(), categorias))
-    return jsonify(categorias), 200
+    return jsonify({"result":{"categorias": categorias}}), 200
 
 @api.route('/categorias', methods=['POST'])
 @jwt_required()
