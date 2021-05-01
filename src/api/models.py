@@ -129,7 +129,7 @@ class Facilidad(db.Model):
     sitios = db.relationship("Sitio", secondary= facilidades_sitios, back_populates="facilidades")
 
     def __repr__(self):
-        return '<Provincia %r>' % self.nombre
+        return '<Facilidad %r>' % self.nombre
 
     def serialize(self):
         return {
@@ -163,7 +163,7 @@ class Galeria(db.Model):
     sitios = db.relationship("Sitio", secondary= galerias_sitios, back_populates="galerias")
 
     def __repr__(self):
-        return '<Provincia %r>' % self.nombre
+        return '<Galeria %r>' % self.nombre
 
     def serialize(self):
         return {
