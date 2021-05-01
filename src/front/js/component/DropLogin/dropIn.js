@@ -8,6 +8,9 @@ const DropLogin = () => {
 			<Link to="/login">
 				<NavDropdown.Item href="#action/3.1">LogIn</NavDropdown.Item>
 			</Link>
+			<NavDropdown.Item href="#action/3.2">Favoritos</NavDropdown.Item>
+			<NavDropdown.Divider />
+			<NavDropdown.Item href="#action/3.4">LogOut</NavDropdown.Item>
 		</NavDropdown>
 	);
 };
