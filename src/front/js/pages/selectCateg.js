@@ -1,7 +1,7 @@
 import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Card, Row, Container, Col, Image } from "react-bootstrap";
-import logo from "../../img/logoCride.png";
+import imag from "../../img/playa.png";
 import { Link, useHistory } from "react-router-dom";
 
 const SelectCateg = () => {
@@ -27,9 +27,9 @@ const SelectCateg = () => {
 						return (
 							<Col key={index}>
 								<Card border="primary" style={{ width: "18rem" }} className="text-center mt-5">
-									<Card.Header>{i}</Card.Header>
+									<Card.Header>{item.categorias}</Card.Header>
 									<Card.Body>
-										<Image src={logo} width="200px" height="200px" />
+										<Image src={imag} width="200px" height="200px" />
 										<div className="mb-3">
 											<input
 												className="form-check-input"
