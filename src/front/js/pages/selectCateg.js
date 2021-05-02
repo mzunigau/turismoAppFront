@@ -1,8 +1,9 @@
 import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Card, Row, Container, Col, Image, Button } from "react-bootstrap";
-import imag from "../../img/playa.png";
+import imag from "../../img/think.png";
 import { Link, useHistory } from "react-router-dom";
+import "../../styles/categories.scss";
 
 const SelectCateg = () => {
 	const { store, actions } = useContext(Context);
@@ -15,7 +16,7 @@ const SelectCateg = () => {
 			history.push("/home");*/
 	}, []);
 	return (
-		<>
+		<div className="body-categ">
 			<Container>
 				<Button
 					onClick={() => {
@@ -26,18 +27,20 @@ const SelectCateg = () => {
 					}}>
 					LogOut
 				</Button>
-				<div className="text-center">
-					<h3>Select the Categories of preference</h3>
+				<div className="title text-center">
+					<h3>
+						<i>Select the Categories of preference</i>
+					</h3>
 				</div>
 				<Row>
 					{store.categorias.map((item, index) => {
 						return (
 							<Col key={index}>
-								<Card border="primary" style={{ width: "18rem" }} className="text-center mt-5">
-									<Card.Header>{item.nombre}</Card.Header>
+								<Card border="primary" style={{ width: "18rem" }} className="text-center my-3">
+									<Card.Header className="title">{item.nombre}</Card.Header>
 									<Card.Body>
-										<Image src={imag} width="200px" height="200px" />
-										<div className="mb-3">
+										<Image src={imag} width="120px" height="150px" />
+										<div className="input mb-3">
 											<input
 												className="form-check-input"
 												type="checkbox"
@@ -51,7 +54,7 @@ const SelectCateg = () => {
 					})}
 				</Row>
 			</Container>
-		</>
+		</div>
 	);
 };
 
