@@ -18,7 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us04.gitpod.io/api",
 			register: false,
 			categorias: [],
-			logOut: true
+			logOut: true,
+			setProfile: null,
+			sitios: []
 		},
 
 		actions: {
@@ -131,23 +133,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			getCharacters: async () => {
-				await fetch(
-					{ newURL },
-					{
-						method: "GET",
-						headers: {
-							"Content-Type": "application/json",
-							Accept: "application/json"
-						}
+			getSitios: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/sitios`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
 					}
-				)
-					.then(function(response) {
-						return response.json();
+				})
+					.then(resp => {
+						return resp.json();
 					})
 					.then(data => {
-						setStore({ peoples: data.results });
-						localStorage.setItem("people", JSON.stringify({ peoples: data.results }));
+						console.log(data, "Marco");
+						setStore({ sitios: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
 					});
 			}
 		}

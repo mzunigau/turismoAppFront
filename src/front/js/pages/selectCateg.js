@@ -1,14 +1,23 @@
 import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Card, Row, Container, Col, Image, Button } from "react-bootstrap";
-import imag from "../../img/think.png";
+import imag from "../../img/playa.png";
 import { Link, useHistory } from "react-router-dom";
 import "../../styles/categories.scss";
 
 const SelectCateg = () => {
 	const { store, actions } = useContext(Context);
 	const history = useHistory();
+	const [check, setCheck] = useState("");
 
+	const SelectCateg = () => {
+		if (check == true) {
+			let value = true;
+		} else {
+			store.usuario.categorias;
+		}
+	};
+	useEffect(() => {});
 	useEffect(() => {
 		actions.getToken();
 		actions.getCategorias();
@@ -28,24 +37,26 @@ const SelectCateg = () => {
 					LogOut
 				</Button>
 				<div className="title text-center">
-					<h3>
+					<h2>
 						<i>Select the Categories of preference</i>
-					</h3>
+					</h2>
 				</div>
 				<Row>
 					{store.categorias.map((item, index) => {
 						return (
-							<Col key={index}>
-								<Card border="primary" style={{ width: "18rem" }} className="text-center my-3">
+							<Col key={index} className="card-all">
+								<Card border="primary" style={{ width: "9rem" }} className="card text-center my-3">
 									<Card.Header className="title">{item.nombre}</Card.Header>
 									<Card.Body>
-										<Image src={imag} width="120px" height="150px" />
 										<div className="input mb-3">
 											<input
 												className="form-check-input"
 												type="checkbox"
-												value=""
-												id="invalidCheck2"></input>
+												value={false}
+												id="invalidCheck2"
+												onChange={e => setCheck(e.target.value)}>
+												{console.log(check, "este es el check")}
+											</input>
 										</div>
 									</Card.Body>
 								</Card>
@@ -53,6 +64,9 @@ const SelectCateg = () => {
 						);
 					})}
 				</Row>
+				<div className="text-center">
+					<Button onClick={() => ShowAlert()}>Listo</Button>
+				</div>
 			</Container>
 		</div>
 	);

@@ -2,7 +2,6 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import CardCatA from "../CardCat/cardCatA";
 import CardCatB from "../CardCat/cardCatB";
-import CardCatC from "../CardCat/cardCatC";
 
 const CarouselCat = () => {
 	return (
@@ -13,10 +12,6 @@ const CarouselCat = () => {
 
 			<Carousel.Item>
 				<CardCatB />
-			</Carousel.Item>
-
-			<Carousel.Item>
-				<CardCatC />
 			</Carousel.Item>
 		</Carousel>
 	);
