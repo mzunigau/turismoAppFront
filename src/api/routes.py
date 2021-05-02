@@ -33,7 +33,7 @@ def create_token():
     
     # create a new token with the user id inside
     access_token = create_access_token(identity={"email":email})
-    return jsonify({ "token": access_token, "user_id": user.id })
+    return jsonify({ "token": access_token, "usuario": Usuario.serialize(user) }), 200
 
 ##### USUARIOS #####
 
