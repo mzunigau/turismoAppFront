@@ -20,7 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			categorias: [],
 			logOut: true,
 			setProfile: null,
-			sitios: []
+			sitios: [],
+			usuario: {}
 		},
 
 		actions: {
@@ -70,8 +71,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 						store.logOut = true;
 						localStorage.setItem("token", data.token);
 						setStore({ email: email });
-						console.log(email);
-						window.location.reload();
+						setStore({ usuario: data.usuario });
+						console.log(store.usuario, "por favooor!");
 					})
 
 					.catch(err => {
@@ -148,6 +149,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log(data, "Marco");
 						setStore({ sitios: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			usuarioUpdated: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					},
+					body: JSON.stringify(store.usuario)
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ usuario: data });
 					})
 
 					.catch(err => {

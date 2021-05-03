@@ -10,19 +10,25 @@ const SelectCateg = () => {
 	const history = useHistory();
 	const [check, setCheck] = useState("");
 
-	const SelectCateg = () => {
-		if (check == true) {
-			let value = true;
+	const CheckCategoria = (event, categSelected) => {
+		console.log(categSelected, "la");
+		if (event.target.checked == true) {
+			store.usuario.categorias.push(categSelected);
+
+			console.log(store.usuario, "checked");
 		} else {
-			store.usuario.categorias;
+			store.usuario.categorias.splice(
+				store.usuario.categorias.findIndex(v => v.id === categSelected.id),
+				1
+			);
+			console.log(store.usuario, "unchecked");
 		}
 	};
-	useEffect(() => {});
+	console.log(store.usuario, "usuario");
+
 	useEffect(() => {
 		actions.getToken();
 		actions.getCategorias();
-		/*if (store.categorias) {
-			history.push("/home");*/
 	}, []);
 	return (
 		<div className="body-categ">
@@ -54,9 +60,7 @@ const SelectCateg = () => {
 												type="checkbox"
 												value={false}
 												id="invalidCheck2"
-												onChange={e => setCheck(e.target.value)}>
-												{console.log(check, "este es el check")}
-											</input>
+												onChange={e => CheckCategoria(e, item)}></input>
 										</div>
 									</Card.Body>
 								</Card>
@@ -65,7 +69,7 @@ const SelectCateg = () => {
 					})}
 				</Row>
 				<div className="text-center">
-					<Button onClick={() => ShowAlert()}>Listo</Button>
+					<Button onClick={() => actions.usuarioUpdated()}>Listo</Button>
 				</div>
 			</Container>
 		</div>
