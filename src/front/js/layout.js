@@ -7,6 +7,7 @@ import Register from "./pages/register";
 import ForgotPass from "./pages/forgotPass";
 import Profile from "./pages/profile";
 import { Home } from "./pages/home";
+import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
@@ -32,6 +33,7 @@ const Layout = () => {
 						<Route exact path="/forgotPass" component={ForgotPass} />
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/profile" component={Profile} />
+						<Route exact path="/homeCatDest" component={HomeCatDest} />
 
 						{/* <Route exact path="/demo">
 							<Demo />

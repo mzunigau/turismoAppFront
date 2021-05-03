@@ -1,4 +1,4 @@
-import { Container, Jumbotron, Col, Image } from "react-bootstrap";
+import { Container, Jumbotron, Col, Image, } from "react-bootstrap";
 import React from "react";
 
 export const Single = () => {
@@ -8,7 +8,7 @@ export const Single = () => {
 			<br />
 			<br />
 			<img
-				src="https://news.co.cr/wp-content/themes/newszine/tim/timthumb.php?src=https://news.co.cr/wp-content/uploads/2017/06/sunset-the-costa-rica-star.jpg&h=565"
+				src="https://cdn.ssl-socket.com/wp-content/uploads/2018/08/a_13699735-a.jpg"
 				fluid
 				alt="imagen destacados"
 			/>

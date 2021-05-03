@@ -6,7 +6,7 @@ export function Card() {
 		return (
 			<div key={i} className="card">
 				<img
-					src="https://lh3.googleusercontent.com/GsGCYhThLVMYccG1cUe1SG012vgZCQWbsdZf7hlEyZlWSFWf6ClCiM7T6k8e3MMQwoDw=s131"
+					src="https://cdn.ssl-socket.com/wp-content/uploads/2018/08/a_13699735-a.jpg"
 					className="card-img-top"
 				/>
 				<div className="card-body">
@@ -15,10 +15,10 @@ export function Card() {
 						This is a wider card with supporting text below as a natural lead-in to additional content. This
 						content is a little bit longer.
 					</p>
-					<a href="#" className="btn btn-primary">
+					<a href="" className="btn btn-primary">
 						+info
 					</a>
-                    <a href="#" className="btn btn-primary">
+					<a href="#" className="btn btn-primary">
 						♥
 					</a>
 				</div>

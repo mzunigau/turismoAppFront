@@ -54,10 +54,14 @@ def createUser():
     body = request.get_json() 
     userNew = Usuario(username=body['username'], nombre=body['nombre'], 
 <<<<<<< HEAD
+<<<<<<< HEAD
     email=body['email'],edad=body['edad'],password=body['password'])
 =======
     email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
 >>>>>>> a4d23e5f4fa43f112330bf777cdb73a6ddf29df9
+=======
+    email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
+>>>>>>> 2cdac799c60a0c2fcbde5c92f13c950645afc795
     db.session.add(userNew)
     db.session.commit()
     return jsonify(serialize(userNew)), 200    
