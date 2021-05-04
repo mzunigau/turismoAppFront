@@ -79,15 +79,15 @@ class Rol(db.Model):
 class Sitio(db.Model):
     __tablename__='sitios'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120), nullable=False)
-    portada = db.Column(db.String(120))
-    ubicacion = db.Column(db.String(120))
+    nombre = db.Column(db.String(255), nullable=False)
+    portada = db.Column(db.String(255))
+    ubicacion = db.Column(db.String(255))
     tipo_costo = db.Column(db.Boolean)
     costo_min = db.Column(db.Integer)
     costo_max = db.Column(db.Integer)
-    lat = db.Column(db.String(120))
-    lon = db.Column(db.String(120))
-    gmaps = db.Column(db.String(120))
+    lat = db.Column(db.String(255))
+    lon = db.Column(db.String(255))
+    gmaps = db.Column(db.String(255))
     dificultad_id = db.Column(db.Integer, db.ForeignKey('dificultades.id'))
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'))
     comentarios = db.relationship("Comentario", backref="sitio")
@@ -157,7 +157,7 @@ class Provincia(db.Model):
 class Galeria(db.Model):
     __tablename__='galerias'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(120), nullable=False)
+    nombre = db.Column(db.String(255), nullable=False)
     sitios = db.relationship("Sitio", secondary= galerias_sitios, back_populates="galerias")
 
     def __repr__(self):
