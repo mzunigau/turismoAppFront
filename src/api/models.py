@@ -92,7 +92,6 @@ class Sitio(db.Model):
     provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'))
     comentarios = db.relationship("Comentario", backref="sitio")
     calificaciones = db.relationship("Calificacion", backref="sitio")
-    categorias = db.relationship("Categoria", secondary= categorias_sitios, back_populates="sitios")
     galerias = db.relationship("Galeria", secondary= galerias_sitios, back_populates="sitios")
     facilidades = db.relationship("Facilidad", secondary= facilidades_sitios, back_populates="sitios")
 
@@ -115,9 +114,8 @@ class Sitio(db.Model):
             "provincia_id": self.provincia_id,
             "comentarios": list(map(lambda x: x.serialize(), self.comentarios)),
             "calificaciones": list(map(lambda x: x.serialize(), self.calificaciones)),
-            "categorias": list(map(lambda x: x.serialize(), self.categorias)),
             "galerias": list(map(lambda x: x.serialize(), self.galerias)),
-            "facilidades": list(map(lambda x: x.serialize(), self.faciliades))
+            "facilidades": list(map(lambda x: x.serialize(), self.facilidades))
         }
 
 
@@ -192,7 +190,7 @@ class Categoria(db.Model):
     __tablename__='categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
-    sitios = db.relationship("Sitio", secondary= categorias_sitios, back_populates="categorias")
+    sitios = db.relationship("Sitio", secondary= categorias_sitios)
 
 
     def __repr__(self):

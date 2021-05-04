@@ -35,36 +35,32 @@ def create_token():
     
     # create a new token with the user id inside
     access_token = create_access_token(identity={"email":email})
-    return jsonify({ "token": access_token, "user_id": user.id })
+    return jsonify({ "token": access_token, "usuario": Usuario.serialize(user) }), 200
 
 ##### USUARIOS #####
-
-@api.route('/usuarios', methods=['GET'])
-@jwt_required()
-def listUsuarios():
-    user = get_jwt_identity()
-    usuario = Usuario.query.all()
-    usuario = list(map(lambda x: x.serialize(), usuario))
-    return jsonify(usuario), 200
-
 @api.route('/usuarios', methods=['POST'])
-@jwt_required()
 def createUser():
-    user = get_jwt_identity()
     body = request.get_json() 
-    userNew = Usuario(username=body['username'], nombre=body['nombre'], 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    email=body['email'],edad=body['edad'],password=body['password'])
-=======
-    email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
->>>>>>> a4d23e5f4fa43f112330bf777cdb73a6ddf29df9
-=======
-    email=body['email'],edad=body['edad'],password=body['password'],country_id= body['country_id'])
->>>>>>> 2cdac799c60a0c2fcbde5c92f13c950645afc795
+
+    if "nombre" in body:
+        nombre = body["nombre"]
+
+    if "email" in body:
+        email = body["email"]
+
+    if "password" in body:
+        password = body["password"]
+
+    if "edad" in body:
+        edad = body["edad"]
+
+    if "country_id" in body:
+        country_id = body["country_id"]
+
+    userNew = Usuario(nombre=nombre, email=email, password=password)
     db.session.add(userNew)
     db.session.commit()
-    return jsonify(serialize(userNew)), 200    
+    return jsonify(Usuario.serialize(userNew)), 200
 
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 @jwt_required()
@@ -186,13 +182,13 @@ def deleteUser(id):
 
 
 #LISTAR POR CATEGORIA
-@api.route('/sitios/categoria/<int:cat_id>', methods=['GET'])
-@jwt_required()
-def listSitiosByCategoria(cat_id):
-    token = get_jwt_identity()
-    query = db.session.query(Sitio).filter(Sitio.categorias.any(id=cat_id))
-    sitios = list(map(lambda x: x.serialize(), query))
-    return jsonify(sitios), 200
+# @api.route('/sitios/categoria/<int:cat_id>', methods=['GET'])
+# @jwt_required()
+# def listSitiosByCategoria(cat_id):
+#     token = get_jwt_identity()
+#     query = db.session.query(Sitio).filter(Sitio.categorias.any(id=cat_id))
+#     sitios = list(map(lambda x: x.serialize(), query))
+#     return jsonify(sitios), 200
 
 #LISTAR TODOS LOS SITIOS
 @api.route('/sitios', methods=['GET'])
@@ -278,10 +274,10 @@ def updateSitio(id):
             calAdd = Calificacion.query.get(cal["id"])
             sitio.calificaciones.append(calAdd)
     
-    if "categorias" in body:
-        for cat in body["categorias"]:
-            catAdd = Categoria.query.get(cat["id"])
-            sitio.categorias.append(catAdd)
+    # if "categorias" in body:
+    #     for cat in body["categorias"]:
+    #         catAdd = Categoria.query.get(cat["id"])
+    #         sitio.categorias.append(catAdd)
     
     if "galerias" in body:
         for gal in body["galerias"]:
@@ -442,7 +438,7 @@ def listCategorias():
     token = get_jwt_identity()
     categorias = Categoria.query.all()
     categorias = list(map(lambda x: x.serialize(), categorias))
-    return jsonify(categorias), 200
+    return jsonify({"result":{"categorias": categorias}}), 200
 
 @api.route('/categorias', methods=['POST'])
 @jwt_required()

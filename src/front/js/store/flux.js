@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-emerald-tarsier-lsmk3bfk.ws-us03.gitpod.io/api",
+			newUrl: "https://3001-red-chickadee-ydkmbno7.ws-us03.gitpod.io/api",
 			register: false
 		},
 
