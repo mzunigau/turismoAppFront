@@ -11,7 +11,7 @@ import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
 import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+import { Single } from "./component/DestInd/singleDest";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -42,7 +42,7 @@ const Layout = () => {
 						{/* <Route exact path="/demo">
 							<Demo />
 						</Route> */}
-						<Route exact path="/single/:theid">
+						<Route exact path="singleDest/:theid">
 							<Single />
 						</Route>
 						<Route>

@@ -1,29 +1,40 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { Card, Container, CardDeck, Button, Col, ButtonToolbar, Row, Image } from "react-bootstrap";
+import { Context } from "../../store/appContext";
 
-export function Card() {
-	const cardNames = ["Manuel Antonio", "Jaco", "Playa Hermosa", "Tesoro escondido"];
-	const CardBody = cardNames.map((singleCard, i) => {
-		return (
-			<div key={i} className="card">
-				<img
-					src="https://cdn.ssl-socket.com/wp-content/uploads/2018/08/a_13699735-a.jpg"
-					className="card-img-top"
-				/>
-				<div className="card-body">
-					<h5 className="card-title">{singleCard}</h5>
-					<p className="card-text">
-						This is a wider card with supporting text below as a natural lead-in to additional content. This
-						content is a little bit longer.
-					</p>
-					<a href="" className="btn btn-primary">
-						+info
-					</a>
-					<a href="#" className="btn btn-primary">
-						♥
-					</a>
-				</div>
-			</div>
-		);
-	});
-	return <div className="d-flex flex-row">{CardBody}</div>;
-}
+const CatDest = () => {
+	const { actions, store } = useContext(Context);
+
+	useEffect(() => {
+		actions.getSitios();
+	}, []);
+
+	return (
+		<Container>
+			<Row>
+				{store.sitios.map((item, index) => {
+					return (
+						<Col key={index}>
+							<br />
+							<Card style={{ width: "18rem" }}>
+								<Image src={item.portada} rounded className="card-img-top" />
+								<Card.Body>
+									<Card.Title>{item.nombre}</Card.Title>
+									<Link to={`/singleDest/${id}`}>
+										<Button variant="primary">{item.nombre}+ Info</Button>
+									</Link>
+									<Button variant="outline-dark">
+										<i className="far fa-heart" />
+									</Button>
+								</Card.Body>
+							</Card>
+						</Col>
+					);
+				})}
+			</Row>
+		</Container>
+	);
+};
+
+export default CatDest;
