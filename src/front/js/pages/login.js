@@ -56,7 +56,7 @@ const Login = () => {
 								</Button>
 							</FormGroup>
 							<FormGroup className="mx-sm-4 pb-3 text-center">
-								<Link to="/register">
+								<Link to="/selectCateg">
 									<input
 										type="submit"
 										className="btn btn-block register"

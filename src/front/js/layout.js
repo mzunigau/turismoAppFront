@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import Login from "./pages/login";
+import AllCateg from "./pages/allCateg";
 import Register from "./pages/register";
 import ForgotPass from "./pages/forgotPass";
 import Profile from "./pages/profile";
+import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
 import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
@@ -31,7 +33,9 @@ const Layout = () => {
 						<Route exact path="/login" component={Login} />
 						<Route exact path="/register" component={Register} />
 						<Route exact path="/forgotPass" component={ForgotPass} />
+						<Route exact path="/selectCateg" component={SelectCateg} />
 						<Route exact path="/home" component={Home} />
+						<Route exact path="/allCateg" component={AllCateg} />
 						<Route exact path="/profile" component={Profile} />
 						<Route exact path="/homeCatDest" component={HomeCatDest} />
 

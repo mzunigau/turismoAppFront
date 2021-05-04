@@ -15,8 +15,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-chocolate-cattle-gmkpignd.ws-us03.gitpod.io/api",
-			register: false
+			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us04.gitpod.io/api",
+			register: false,
+			categorias: [],
+			logOut: true,
+			setProfile: null,
+			sitios: [],
+			usuario: {}
 		},
 
 		actions: {
@@ -46,6 +51,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+			logOut: () => {
+				localStorage.removeItem("token");
+				const store = getStore();
+				store.logOut = false;
+			},
 
 			loginInit: (email, password) => {
 				const store = getStore();
@@ -58,10 +68,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return response.json();
 					})
 					.then(data => {
-						localStorage.setItem("token", data);
+						store.logOut = true;
+						localStorage.setItem("token", data.token);
 						setStore({ email: email });
-						console.log(email);
-						window.location.reload();
+						setStore({ usuario: data.usuario });
+						console.log(store.usuario, "por favooor!");
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			registerInit: (email, nombre, password) => {
+				const store = getStore();
+				console.log(email, nombre, password, "estoy dentro");
+				fetch(`${store.newUrl}/usuarios`, {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ email: email, nombre: nombre, password: password })
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ register: true });
 					})
 
 					.catch(err => {
@@ -72,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getToken: () => {
 				let store = getStore();
 				let token = localStorage.getItem("token");
-
+				console.log(token, "este es el token");
 				if (token && token.length > 0) {
 					setStore({ login: true });
 				} else {
@@ -80,20 +111,67 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			registerInit: (email, username, password) => {
+			getCategorias: () => {
 				const store = getStore();
-				console.log(email, username, password, "estoy dentro");
-				fetch(`${store.newUrl}/register`, {
-					method: "POST",
-					headers: { "Content-Type": "application/json" },
-					mode: "no-cors",
-					body: JSON.stringify({ email: email, username: username, password: password })
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/categorias`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ categorias: data.result.categorias });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			getSitios: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/sitios`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ sitios: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			usuarioUpdated: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					},
+					body: JSON.stringify(store.usuario)
 				})
 					.then(response => {
 						return response.json();
 					})
 					.then(data => {
-						setStore({ register: true });
+						setStore({ usuario: data });
 					})
 
 					.catch(err => {

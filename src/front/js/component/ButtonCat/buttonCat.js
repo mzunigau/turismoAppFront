@@ -1,11 +1,14 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ButtonCat = () => {
 	return (
-		<Button variant="success" size="lg" block>
-			Ver todas las Categorías
-		</Button>
+		<Link to="/allCateg">
+			<Button variant="success" size="lg" block>
+				Mostrar todos los sitios
+			</Button>
+		</Link>
 	);
 };
 

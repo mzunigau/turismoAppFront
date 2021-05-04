@@ -8,9 +8,7 @@ from flask import Flask, request, jsonify, url_for, Blueprint
 from api.models import db, Usuario, Sitio, Provincia, Dificultad, Categoria, Comentario, Calificacion, Rol, Facilidad, Galeria
 from api.utils import generate_sitemap, APIException
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 @api.route('/hello', methods=['POST', 'GET'])
@@ -35,7 +33,7 @@ def create_token():
     
     # create a new token with the user id inside
     access_token = create_access_token(identity={"email":email})
-    return jsonify({ "token": access_token, "user_id": user.id })
+    return jsonify({ "token": access_token, "usuario": Usuario.serialize(user) }), 200
 
 ##### USUARIOS #####
 
