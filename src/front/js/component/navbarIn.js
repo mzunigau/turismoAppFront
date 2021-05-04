@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap"
-import SearchBar from "./SearchBar/searchBar";
+import ButtonFav from "./ButtonFav/buttonFav";
 import DropLogin from "./DropLogin/dropLogin";
 import LogoApp from "../../img/CRideLogo.png"
 
@@ -13,7 +13,7 @@ export const Navbar = () => {
                 <Image src={LogoApp} width="200px" height="200px" />
 			</Link>
 
-			<SearchBar />
+			<ButtonFav />
 
 			<DropLogin />
 		</nav>
