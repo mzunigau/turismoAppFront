@@ -166,8 +166,7 @@ class Galeria(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "sitios": list(map(lambda x: x.serialize(), self.sitios))           
+            "nombre": self.nombre      
         }
 
 class Dificultad(db.Model):
