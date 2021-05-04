@@ -1,16 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar/searchBar";
+import { Image } from "react-bootstrap";
+// import SearchBar from "./SearchBar/searchBar";
 import DropLogin from "./DropLogin/dropLogin";
+import LogoApp from "../../img/CRideLogo.png";
 
 export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">CRide</span>
+				{/* <span className="navbar-brand mb-0 h1">CRide</span> */}
+				<Image src={LogoApp} width="80px" height="80px" />
 			</Link>
 
-			<SearchBar />
+			{/* <SearchBar /> */}
 
 			<DropLogin />
 		</nav>
