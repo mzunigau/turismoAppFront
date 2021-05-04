@@ -17,10 +17,7 @@ const SelectCateg = () => {
 
 			console.log(store.usuario, "checked");
 		} else {
-			store.usuario.categorias.splice(
-				store.usuario.categorias.findIndex(v => v.id === categSelected.id),
-				1
-			);
+			store.usuario.categorias.splice(store.usuario.categorias.findIndex(v => v.id === categSelected.id), 1);
 			console.log(store.usuario, "unchecked");
 		}
 	};
@@ -60,7 +57,8 @@ const SelectCateg = () => {
 												type="checkbox"
 												value={false}
 												id="invalidCheck2"
-												onChange={e => CheckCategoria(e, item)}></input>
+												onChange={e => CheckCategoria(e, item)}
+											/>
 										</div>
 									</Card.Body>
 								</Card>
