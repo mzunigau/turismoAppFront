@@ -18,13 +18,9 @@ const AllCateg = () => {
 						<Col key={index}>
 							<br />
 							<Card style={{ width: "18rem" }}>
-								<Image
-									src="https://www.lacasadeel.net/wp-content/uploads/2014/12/Star-Wars-Logo.jpg"
-									rounded
-									className="card-img-top"
-								/>
+								<Image src={item.portada} rounded className="card-img-top" />
 								<Card.Body>
-									<Card.Title>{item}</Card.Title>
+									<Card.Title>{item.nombre}</Card.Title>
 									<Button variant="outline-dark">
 										<i className="far fa-heart" />
 									</Button>

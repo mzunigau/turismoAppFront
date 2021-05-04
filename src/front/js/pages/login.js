@@ -12,7 +12,6 @@ const Login = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		actions.getToken();
 		if (store.login) {
 			history.push("/home");
 		}
@@ -56,7 +55,7 @@ const Login = () => {
 								</Button>
 							</FormGroup>
 							<FormGroup className="mx-sm-4 pb-3 text-center">
-								<Link to="/selectCateg">
+								<Link to="/home">
 									<input
 										type="submit"
 										className="btn btn-block register"

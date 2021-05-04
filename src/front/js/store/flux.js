@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us04.gitpod.io/api",
+			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us03.gitpod.io/api",
 			register: false,
 			categorias: [],
 			logOut: true,
@@ -82,7 +82,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			registerInit: (email, nombre, password) => {
 				const store = getStore();
-				console.log(email, nombre, password, "estoy dentro");
 				fetch(`${store.newUrl}/usuarios`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -140,7 +139,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${store.newUrl}/sitios`, {
 					method: "GET",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
 					}
 				})
 					.then(resp => {
