@@ -9,7 +9,7 @@ export const TabNav = () => {
 
 	console.log(store.usuario.categorias[0]);
 	return (
-		<Tabs defaultActiveKey="playa" id="uncontrolled-tab-example">
+		<Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
 			{store.usuario.categorias.map((categoria, index) => {
 				return (
 					<Tab key={index} eventKey={categoria.nombre} title={categoria.nombre}>
