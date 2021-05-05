@@ -41,15 +41,14 @@ app.config['MAIL_PORT']='587'
 app.config['MAIL_USE_TLS']='True'
 app.config['MAIL_USERNAME']='apikey'
 app.config['MAIL_PASSWORD']=os.environ.get('SENDGRID_KEY')
-app.config['MAIL_DEFAULT_SENDER']='noreply@demo.com'
+app.config['MAIL_DEFAULT_SENDER']='mzunigau@outlook.com'
 
 mail = Mail(app)
 
 @app.route('/restore', methods=['POST'])
 def index():
     email = request.json.get('email')
-    msg = Mail(from_email='noreply@demo.com', 
-                to_emails='mazuga92@gmail.com',
+    msg = Mail(recipient=email,
                 subject='Reset password',
                 plain_text_content='Este es un correo')
     try:
