@@ -535,6 +535,7 @@ def deleteCalificacion(id):
 def passwordRecovery():
     body = request.get_json()
     email = body["email"]
+    
     newPass = body["password"]
     tempPassword = body["temp"]
     usuario = Usuario.query.filter_by(email=email).first()
