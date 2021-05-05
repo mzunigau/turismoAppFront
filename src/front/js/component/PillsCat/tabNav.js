@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 export const TabNav = () => {
 	const { store, actions } = useContext(Context);
 
+	useEffect(() => {
+		actions.getUsuario();
+	}, []);
+
 	console.log(store.usuario);
 	return (
 		<Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">

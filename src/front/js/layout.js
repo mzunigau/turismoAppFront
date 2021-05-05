@@ -11,7 +11,7 @@ import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
 import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
+// import { Single } from "./pages/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -42,9 +42,9 @@ const Layout = () => {
 						{/* <Route exact path="/demo">
 							<Demo />
 						</Route> */}
-						<Route exact path="/single/:theid">
+						{/* <Route exact path="/single/:theid">
 							<Single />
-						</Route>
+						</Route> */}
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
