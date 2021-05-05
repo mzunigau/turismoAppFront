@@ -177,6 +177,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => {
 						console.log("error", err);
 					});
+			},
+
+			addFavoritos: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					},
+					body: JSON.stringify(store.usuario)
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ usuario: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
 			}
 		}
 	};

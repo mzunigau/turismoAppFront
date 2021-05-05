@@ -9,12 +9,8 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<Link to="/">
-				{/* <span className="navbar-brand mb-0 h1">CRide</span> */}
                 <Image src={LogoApp} width="200px" height="200px" />
 			</Link>
-
-			<SearchBar />
-
 			<DropLogin />
 		</nav>
 	);

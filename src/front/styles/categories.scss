@@ -1,6 +1,12 @@
+.title-categ{
+margin-top: 9rem;
+color: blue; 
+font-optical-sizing: 30;
+}
+
 .card-all{
-    margin-top: 7rem;
-    margin-bottom: 7rem;
+    margin-top: 4rem;
+    margin-bottom: 5rem;
 }
 
 .card{
@@ -14,7 +20,9 @@
 }
 
 .body-categ{
-    background-color: rgb(183, 253, 181);
-     height: 100vh;
+    background-image: url("../img/backgroundCateg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
