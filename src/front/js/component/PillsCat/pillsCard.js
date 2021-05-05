@@ -1,16 +1,17 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export const PillsCard = () => {
+export const PillsCard = sitio => {
 	return (
 		<Card style={{ width: "18rem" }}>
-			<Card.Img variant="top" src="holder.js/100px180" />
+			<Card.Img variant="top" src={sitio.portada} />
 			<Card.Body>
-				<Card.Title>Card Title</Card.Title>
-				<Card.Text>
-					Some quick example text to build on the card title and make up the bulk of the card content.
-				</Card.Text>
-				<Button variant="primary">Go somewhere</Button>
+				<Card.Title>{sitio.nombre}</Card.Title>
+				<Card.Text>{sitio.ubicacion}</Card.Text>
+				<Link to={`/single/${sitio.id}`}>
+					<Button variant="primary">{sitio.nombre}</Button>
+				</Link>
 			</Card.Body>
 		</Card>
 	);

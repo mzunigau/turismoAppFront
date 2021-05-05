@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us03.gitpod.io/api",
+			newUrl: "https://3001-scarlet-leech-2xhqeeiw.ws-us03.gitpod.io/api",
 			register: false,
 			categorias: [],
 			logOut: true,
@@ -53,6 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			logOut: () => {
 				localStorage.removeItem("token");
+				localStorage.removeItem("usuario");
 				const store = getStore();
 				store.logOut = false;
 			},
@@ -70,6 +71,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						store.logOut = true;
 						localStorage.setItem("token", data.token);
+						localStorage.setItem("usuario", JSON.stringify(data.usuario));
 						setStore({ email: email });
 						setStore({ usuario: data.usuario });
 						console.log(store.usuario, "por favooor!");
@@ -126,6 +128,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log(data, "Marco");
 						setStore({ categorias: data.result.categorias });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			getUsuario: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				let usuario = JSON.parse(localStorage.getItem("usuario"));
+				console.log("getUsuario", usuario);
+				fetch(`${store.newUrl}/usuarios/${usuario.id}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ usuario: data });
 					})
 
 					.catch(err => {

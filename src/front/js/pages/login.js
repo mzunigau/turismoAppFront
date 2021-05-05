@@ -1,7 +1,7 @@
 import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Container, InputGroup, Button, Image, Row, FormGroup, Col, Form } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import LogoImg from "../../img/Imagen1.png";
 import "../../styles/login.scss";
 
@@ -17,7 +17,7 @@ const Login = () => {
 		}
 	}, []);
 
-	return (
+	return !localStorage.token ? (
 		<div id="body-login">
 			<Container id="contenedor1" className="text-center p-3">
 				<Image src={LogoImg} width={200} height={200} />
@@ -55,7 +55,7 @@ const Login = () => {
 								</Button>
 							</FormGroup>
 							<FormGroup className="mx-sm-4 pb-3 text-center">
-								<Link to="/selectCateg">
+								<Link to="/">
 									<input
 										type="submit"
 										className="btn btn-block register"
@@ -72,6 +72,8 @@ const Login = () => {
 				</Row>
 			</Container>
 		</div>
+	) : (
+		<Redirect to="/home" />
 	);
 };
 
