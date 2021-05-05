@@ -84,7 +84,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			registerInit: (email, nombre, password) => {
 				const store = getStore();
-				console.log(email, nombre, password, "estoy dentro");
 				fetch(`${store.newUrl}/usuarios`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
@@ -167,7 +166,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch(`${store.newUrl}/sitios`, {
 					method: "GET",
 					headers: {
-						"Content-Type": "application/json"
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
 					}
 				})
 					.then(resp => {
@@ -184,6 +184,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			usuarioUpdated: () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					},
+					body: JSON.stringify(store.usuario)
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						setStore({ usuario: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			addFavoritos: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
 				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {

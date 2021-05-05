@@ -12,7 +12,6 @@ const Login = () => {
 	const history = useHistory();
 
 	useEffect(() => {
-		actions.getToken();
 		if (store.login) {
 			history.push("/home");
 		}

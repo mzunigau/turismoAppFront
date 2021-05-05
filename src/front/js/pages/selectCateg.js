@@ -11,7 +11,6 @@ const SelectCateg = () => {
 	const [check, setCheck] = useState("");
 
 	const CheckCategoria = (event, categSelected) => {
-		console.log(categSelected, "la");
 		if (event.target.checked == true) {
 			store.usuario.categorias.push(categSelected);
 
@@ -42,7 +41,7 @@ const SelectCateg = () => {
 					}}>
 					LogOut
 				</Button>
-				<div className="title text-center">
+				<div className="title-categ text-center">
 					<h2>
 						<i>Select the Categories of preference</i>
 					</h2>
