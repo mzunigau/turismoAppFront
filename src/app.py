@@ -57,8 +57,18 @@ setup_admin(app)
 #Recuperar contrasena
 @app.route('/email', methods=['POST'])
 def restore():
-    email= request.json.get('email')
+    body = request.get_json()
+
+    email= body['email']
     newPassword = ''.join(random.choice(string.ascii_letters) for i in range(10))
+    usuario = Usuario.query.filter_by(email=email).first()
+    if usuario is None:
+        raise APIException('Usuario not found', status_code=404)
+    usuario.password = newPassword
+    db.session.commit()
+    back = os.environ.get('BACKEND_URL')
+    front = back.replace("3001", "3000")
+    passresetPage= front + "/reset/" + email 
     msg = Message('Reestrablecer contraseña', recipients=[email])
     msg.html=f'''<!doctype html>
 <html lang="en-US">
@@ -103,7 +113,7 @@ def restore():
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href="" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Resetear
+                                        <a href="{passresetPage}" style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Resetear
                                             contraseña</a>
                                     </td>
                                 </tr>

@@ -531,24 +531,18 @@ def deleteCalificacion(id):
 ##########  EMAIL RECOVERY  #############
 #########################################
 
-
-# URL GENERE UN NUEVO PASSWORD y ENVIE UN CORREO PARA CAMBIAR LA CONTRASEÑA
-def get_random_string(length):
-    # choose from all lowercase letter
-    letters = string.ascii_lowercase
-    result_str = ''.join(random.choice(letters) for i in range(length))
-    print("Random string of length", length, "is:", result_str)
-
-@api.route('/email/<int:email>', methods=['PUT'])
-def passwordRecovery(email):
+@api.route('/reset', methods=['POST'])
+def passwordRecovery():
     body = request.get_json()
-    usuario = Usuario.query.filter_by(email=email)
+    email = body["email"]
+    newPass = body["password"]
+    tempPassword = body["temp"]
+    usuario = Usuario.query.filter_by(email=email).first()
     if usuario is None:
-        raise APIException('Usuario not found', status_code=404)
-    usuario.password = get_random_string(6)
+       raise APIException('Usuario not found', status_code=404)
+    if usuario.password == tempPassword:
+        usuario.password = newPass
     db.session.commit()
-    #Enviar email con el password y el endpoint para cambiar el password
-
     return jsonify(Usuario.serialize(usuario)), 200
 
 
