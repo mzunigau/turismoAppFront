@@ -177,7 +177,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(err => {
 						console.log("error", err);
 					});
-			}
+            },
 		}
 	};
 };
