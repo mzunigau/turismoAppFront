@@ -11,6 +11,8 @@ from api.models import db
 from api.routes import api
 from api.admin import setup_admin
 from flask_jwt_extended import JWTManager
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 
 ENV = os.getenv("FLASK_ENV")
@@ -33,6 +35,29 @@ app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET") # Change this!
 jwt = JWTManager(app)
 CORS(app)
 
+app.config['SECRET_KEY']='top-secret!'
+app.config['MAIL_SERVER']='smtp.sendgrid.net'
+app.config['MAIL_PORT']='587'
+app.config['MAIL_USE_TLS']='True'
+app.config['MAIL_USERNAME']='apikey'
+app.config['MAIL_PASSWORD']=os.environ.get('SENDGRID_KEY')
+app.config['MAIL_DEFAULT_SENDER']='noreply@demo.com'
+
+mail = Mail(app)
+
+@app.route('/restore', methods=['POST'])
+def index():
+    email = request.json.get('email')
+    msg = Mail(from_email='noreply@demo.com', 
+                to_emails='mazuga92@gmail.com',
+                subject='Reset password',
+                plain_text_content='Este es un correo')
+    try:
+        sg= SendGridAPIClient(os.environ['SENDGRID_KEY'])
+        response = sg.send(msg)
+    except Exception as e:
+        print(e)
+    return "OK", 200
 
 # add the admin
 setup_admin(app)

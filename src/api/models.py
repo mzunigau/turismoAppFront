@@ -63,7 +63,6 @@ class Rol(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     usuarios = db.relationship("Usuario", secondary= roles_usuarios, back_populates="roles")
 
-
     def __repr__(self):
         return '<Rol %r>' % self.nombre
 
@@ -188,14 +187,14 @@ class Categoria(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     sitios = db.relationship("Sitio", secondary= categorias_sitios)
 
-
     def __repr__(self):
         return '<Categoria %r>' % self.nombre
 
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre     
+            "nombre": self.nombre,
+            "sitios": list(map(lambda x: x.serialize(), self.sitios))
         }
 
 class Comentario(db.Model):
