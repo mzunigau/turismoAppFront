@@ -133,8 +133,7 @@ class Facilidad(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
-            "url": self.url,
-            "sitios": list(map(lambda x: x.serialize(), self.sitios))           
+            "url": self.url         
         }
 
 
@@ -150,8 +149,7 @@ class Provincia(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "sitios": list(map(lambda x: x.serialize(), self.sitios))           
+            "nombre": self.nombre          
         }
 
 class Galeria(db.Model):
@@ -181,8 +179,7 @@ class Dificultad(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "sitios": list(map(lambda x: x.serialize(), self.sitios))           
+            "nombre": self.nombre         
         }
 
 class Categoria(db.Model):
@@ -198,8 +195,7 @@ class Categoria(db.Model):
     def serialize(self):
         return {
             "id": self.id,
-            "nombre": self.nombre,
-            "sitios": list(map(lambda x: x.serialize(), self.sitios))         
+            "nombre": self.nombre     
         }
 
 class Comentario(db.Model):
@@ -231,7 +227,7 @@ class Calificacion(db.Model):
     numero = db.Column(db.Integer,nullable=False)
 
     def __repr__(self):
-        return '<Calificacion %r>' % self.nombre
+        return '<Calificacion %r>' % self.descripcion
 
     def serialize(self):
         return {
