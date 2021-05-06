@@ -60,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			loginInit: (email, password) => {
 				const store = getStore();
-				fetch(`${store.newUrl}/login`, {
+				fetch(process.env.BACKEND_URL + `/api/login`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ email: email, password: password })
@@ -84,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			registerInit: (email, nombre, password) => {
 				const store = getStore();
-				fetch(`${store.newUrl}/usuarios`, {
+				fetch(process.env.BACKEND_URL + `/api/usuarios`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ email: email, nombre: nombre, password: password })
@@ -115,7 +115,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getCategorias: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(`${store.newUrl}/categorias`, {
+				fetch(process.env.BACKEND_URL + `/api/categorias`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -140,7 +140,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let token = localStorage.getItem("token");
 				let usuario = JSON.parse(localStorage.getItem("usuario"));
 				console.log("getUsuario", usuario);
-				fetch(`${store.newUrl}/usuarios/${usuario.id}`, {
+				fetch(process.env.BACKEND_URL + `/api/usuarios/${usuario.id}`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -163,7 +163,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getSitios: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(`${store.newUrl}/sitios`, {
+				fetch(process.env.BACKEND_URL + `/api/sitios`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -186,7 +186,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarioUpdated: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+				fetch(process.env.BACKEND_URL + `$/api/usuarios/${store.usuario.id}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
@@ -209,7 +209,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavoritos: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(`${store.newUrl}/usuarios/${store.usuario.id}`, {
+				fetch(process.env.BACKEND_URL + `/api/usuarios/${store.usuario.id}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",
