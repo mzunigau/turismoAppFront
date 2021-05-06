@@ -9,13 +9,6 @@ const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [user, setUser] = useState("");
 	const [pass, setPass] = useState("");
-	const history = useHistory();
-
-	useEffect(() => {
-		if (store.login) {
-			history.push("/home");
-		}
-	}, []);
 
 	return !localStorage.token ? (
 		<div id="body-login">

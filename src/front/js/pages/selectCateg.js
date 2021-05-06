@@ -26,6 +26,7 @@ const SelectCateg = () => {
 	console.log(store.usuario, "usuario");
 
 	useEffect(() => {
+		actions.getUsuario();
 		actions.getToken();
 		actions.getCategorias();
 	}, []);

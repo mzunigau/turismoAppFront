@@ -15,12 +15,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 
-			newUrl: "https://3001-scarlet-leech-2xhqeeiw.ws-us03.gitpod.io/api",
+			newUrl: "https://3001-scarlet-hippopotamus-84nilml9.ws-us03.gitpod.io/api",
 			register: false,
 			categorias: [],
 			logOut: true,
 			setProfile: null,
 			sitios: [],
+			sitiosID: null,
 			usuario: {}
 		},
 
@@ -164,6 +165,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
 				fetch(`${store.newUrl}/sitios`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ sitios: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			getSitiosID: id => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/sitios/${id}`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
