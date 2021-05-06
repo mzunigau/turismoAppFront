@@ -25,7 +25,7 @@ export const TabNav = () => {
 											<Card.Img variant="top" src="" />
 											<Card.Body>
 												<Card.Title>{sitio.nombre}</Card.Title>
-												<Link to={`/single/${sitio.id}`}>
+												<Link to={`/singleDest/${sitio.id}`}>
 													<Button variant="primary">{sitio.nombre}</Button>
 												</Link>
 											</Card.Body>

@@ -9,7 +9,7 @@ export const PillsCard = sitio => {
 			<Card.Body>
 				<Card.Title>{sitio.nombre}</Card.Title>
 				<Card.Text>{sitio.ubicacion}</Card.Text>
-				<Link to={`/single/${sitio.id}`}>
+				<Link to={`/singleDest2/${sitio.id}`}>
 					<Button variant="primary">{sitio.nombre}</Button>
 				</Link>
 			</Card.Body>
