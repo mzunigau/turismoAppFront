@@ -534,17 +534,18 @@ def deleteCalificacion(id):
 @api.route('/reset', methods=['POST'])
 def passwordRecovery():
     body = request.get_json()
-    email = body["email"]
-    
+    id = body["id"]
     newPass = body["password"]
     tempPassword = body["temp"]
-    usuario = Usuario.query.filter_by(email=email).first()
+
+    usuario = Usuario.query.get(id)
     if usuario is None:
        raise APIException('Usuario not found', status_code=404)
     if usuario.password == tempPassword:
         usuario.password = newPass
-    db.session.commit()
-    return jsonify(Usuario.serialize(usuario)), 200
+        db.session.commit()
+     
+    return "OK", 200
 
 
 

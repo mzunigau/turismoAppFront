@@ -13,20 +13,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			recovery: false,
+			resetRecovery: false,
+			emailRecovery: null,
+			resetUserId: null,
+			newPassword: null,
+			tempPassword: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
-			},
-
-			getMessage: () => {
-				// fetching data from the backend
-				fetch(process.env.BACKEND_URL + "/api/hello")
-					.then(resp => resp.json())
-					.then(data => setStore({ message: data.message }))
-					.catch(error => console.log("Error loading message from backend", error));
 			},
 			changeColor: (index, color) => {
 				//get the store
@@ -41,6 +39,70 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			setEmail: email => {
+				setStore({ emailRecovery: email });
+				return true;
+			},
+			setUserId: id => {
+				setStore({ resetUserId: id });
+				return true;
+			},
+			setTempPass: temp => {
+				setStore({ tempPassword: temp });
+				return true;
+			},
+			setNewPass: newPss => {
+				setStore({ newPassword: newPss });
+				return true;
+			},
+			recoveryEmail: () => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/email", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ email: store.emailRecovery })
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						console.log("DATA DEL RECOVERY ", data);
+						if (data == "OK") {
+							setStore({ recovery: true });
+							return true;
+						}
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+			resetPassword: id => {
+				const store = getStore();
+				fetch(process.env.BACKEND_URL + "/api/reset", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({
+						id: id,
+						password: store.newPassword,
+						temp: store.tempPassword
+					})
+				})
+					.then(response => {
+						return response.json();
+					})
+					.then(data => {
+						console.log("DATA DEL RECOVERY ", data);
+						if (data == "OK") {
+							setStore({ resetRecovery: true });
+						}
+						return true;
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
 			}
 		}
 	};
