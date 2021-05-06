@@ -11,7 +11,11 @@ import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
 import { HomeCatDest } from "./pages/homeCatDest";
 // import { Demo } from "./pages/demo";
+<<<<<<< HEAD
 // import { Single } from "./pages/single";
+=======
+import { Single } from "./component/DestInd/singleDest";
+>>>>>>> aed37b8768886ab9bf4726405c9aa282faeff9f3
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -42,7 +46,11 @@ const Layout = () => {
 						{/* <Route exact path="/demo">
 							<Demo />
 						</Route> */}
+<<<<<<< HEAD
 						{/* <Route exact path="/single/:theid">
+=======
+						<Route exact path="singleDest/:theid">
+>>>>>>> aed37b8768886ab9bf4726405c9aa282faeff9f3
 							<Single />
 						</Route> */}
 						<Route>
