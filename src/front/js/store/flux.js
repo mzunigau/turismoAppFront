@@ -199,7 +199,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log(data, "Marco");
-						setStore({ sitios: data });
+						setStore({ sitiosID: data });
 					})
 
 					.catch(err => {

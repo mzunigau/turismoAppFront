@@ -10,6 +10,8 @@ import Profile from "./pages/profile";
 import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
 import { HomeCatDest } from "./pages/homeCatDest";
+// import { Demo } from "./pages/demo";
+import { Single } from "./component/DestInd/singleDest";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -36,6 +38,13 @@ const Layout = () => {
 						<Route exact path="/allCateg" component={AllCateg} />
 						<Route exact path="/profile" component={Profile} />
 						<Route exact path="/homeCatDest" component={HomeCatDest} />
+
+						{/* <Route exact path="/demo">
+							<Demo />
+						</Route> */}
+						<Route exact path="singleDest/:theid">
+							<Single />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

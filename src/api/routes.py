@@ -36,15 +36,6 @@ def create_token():
     return jsonify({ "token": access_token, "usuario": Usuario.serialize(user) }), 200
 
 ##### USUARIOS #####
-
-@api.route('/usuarios', methods=['GET'])
-@jwt_required()
-def listUsuarios():
-    user = get_jwt_identity()
-    usuario = Usuario.query.all()
-    usuario = list(map(lambda x: x.serialize(), usuario))
-    return jsonify(usuario), 200
-
 @api.route('/usuarios', methods=['POST'])
 def createUser():
     body = request.get_json() 
@@ -67,7 +58,7 @@ def createUser():
     userNew = Usuario(nombre=nombre, email=email, password=password)
     db.session.add(userNew)
     db.session.commit()
-    return jsonify(Usuario.serialize(userNew)), 200    
+    return jsonify(Usuario.serialize(userNew)), 200
 
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 @jwt_required()

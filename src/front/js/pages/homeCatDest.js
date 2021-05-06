@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Jumbotron } from "../component/CategoriasDest/Jumbotron";
-import { Card } from "../component/CategoriasDest/Card";
 import { Footer } from "../component/CategoriasDest/Footer";
+import CatDest from "../component/catDest/Card";
 //create your first component
 
 export const HomeCatDest = () => {
@@ -10,7 +10,7 @@ export const HomeCatDest = () => {
 	return (
 		<div className="container-fluid mb-3">
 			<Jumbotron />
-			<Card />
+			<CatDest />
 		</div>
 	);
 };
