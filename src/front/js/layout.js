@@ -2,13 +2,17 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
+import Login from "./pages/login";
+import AllCateg from "./pages/allCateg";
+import Register from "./pages/register";
+import ForgotPass from "./pages/forgotPass";
+import Profile from "./pages/profile";
+import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
-
-import { Recovery } from "./pages/recovery";
-import { Reset } from "./pages/reset";
-
+import { CatDest } from "./pages/CatDest";
+import { Single } from "./pages/singleDest";
+import {Reset} from "./pages/reset"
+import {Recovery} from "./pages/recovery"
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -26,21 +30,19 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Switch>
-						<Route exact path="/">
-							<Home />
-						</Route>
-						<Route exact path="/demo">
-							<Demo />
-						</Route>
-						<Route exact path="/single/:theid">
-							<Single />
-						</Route>
-						<Route exact path="/recovery">
-							<Recovery />
-						</Route>
-						<Route exact path="/reset/:id">
-							<Reset />
-						</Route>
+						<Route exact path="/" component={Home} />
+						<Route exact path="/login" component={Login} />
+						<Route exact path="/register" component={Register} />
+						<Route exact path="/forgotPass" component={ForgotPass} />
+						<Route exact path="/selectCateg" component={SelectCateg} />
+						<Route exact path="/home" component={Home} />
+						<Route exact path="/allCateg" component={AllCateg} />
+						<Route exact path="/profile" component={Profile} />
+						<Route exact path="/CatDest/:id" component={CatDest} />
+						<Route exact path="/singleDest/:id" component={Single} />
+                        <Route exact path="/recovery" component={Recovery}/>
+						<Route exact path="/reset/:id" component={Reset}/>
+
 						<Route>
 							<h1>Not found!</h1>
 						</Route>
