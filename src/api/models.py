@@ -80,7 +80,7 @@ class Sitio(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
     portada = db.Column(db.String(255))
-    ubicacion = db.Column(db.String(255))
+    ubicacion = db.Column(db.String(1000))
     tipo_costo = db.Column(db.Boolean)
     costo_min = db.Column(db.Integer)
     costo_max = db.Column(db.Integer)

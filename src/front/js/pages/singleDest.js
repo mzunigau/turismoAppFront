@@ -49,6 +49,9 @@ export const Single = () => {
 							<i className="fas fa-map-marker-alt">
 								<strong>Ubicación:</strong>
 							</i>
+							<p>{store.sitiosID && store.sitiosID.Gmaps}</p>
+						</div>
+						<div className="descripcion">
 							<p>{store.sitiosID && store.sitiosID.ubicacion}</p>
 						</div>
 						<div>
