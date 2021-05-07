@@ -29,30 +29,11 @@ export const Single = () => {
 						<br />
 						<br />
 						<div className="resumen-propiedad">
-							<ul className="iconos-caracteristicas">
-								<li>
-									<img src={logo_bed} alt="Icono Hotel" width="100px" height="100px" />
-								</li>
-
-								<li>
-									<img src={Logobank} alt="icono Bank" width="100px" height="100px" />
-								</li>
-
-								<li>
-									<img src={LogoDining} alt="icono Dining" width="100px" height="100px" />
-								</li>
-							</ul>
+							<img src={logo_bed} alt="Icono Hotel" width="40px" height="40px" />
+							<img src={Logobank} alt="icono Bank" width="40px" height="40px" />
+							<img src={LogoDining} alt="icono Dining" width="40px" height="40px" />
 						</div>
-						<main className="contenedor seccion contenido-centrado texto-entrada">
-							<div>
-								<p>{store.sitiosID && store.sitiosID.comentarios}</p>
-							</div>
-							<div
-								className="fb-comments"
-								data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
-								data-width="100%"
-								data-numposts="5"></div>
-						</main>
+						
 					</>
 				)}
 			</Jumbotron>

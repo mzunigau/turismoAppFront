@@ -9,7 +9,7 @@ import ForgotPass from "./pages/forgotPass";
 import Profile from "./pages/profile";
 import SelectCateg from "./pages/selectCateg";
 import { Home } from "./pages/home";
-import { HomeCatDest } from "./pages/homeCatDest";
+import { CatDest } from "./pages/CatDest";
 import { Single } from "./pages/singleDest";
 import injectContext from "./store/appContext";
 
@@ -36,7 +36,7 @@ const Layout = () => {
 						<Route exact path="/home" component={Home} />
 						<Route exact path="/allCateg" component={AllCateg} />
 						<Route exact path="/profile" component={Profile} />
-						<Route exact path="/homeCatDest" component={HomeCatDest} />
+						<Route exact path="/CatDest/:id" component={CatDest} />
 						<Route exact path="/singleDest/:id" component={Single} />
 
 						<Route>
