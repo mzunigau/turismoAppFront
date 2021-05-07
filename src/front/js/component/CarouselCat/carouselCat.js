@@ -2,18 +2,21 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import CardCatA from "../CardCat/cardCatA";
 import CardCatB from "../CardCat/cardCatB";
+import "../../../styles/carouselCat.scss";
 
 const CarouselCat = () => {
 	return (
-		<Carousel>
-			<Carousel.Item>
-				<CardCatA />
-			</Carousel.Item>
+		<div className="bg-home">
+			<Carousel>
+				<Carousel.Item>
+					<CardCatA />
+				</Carousel.Item>
 
-			<Carousel.Item>
-				<CardCatB />
-			</Carousel.Item>
-		</Carousel>
+				<Carousel.Item>
+					<CardCatB />
+				</Carousel.Item>
+			</Carousel>
+		</div>
 	);
 };
 

@@ -8,7 +8,9 @@ const CardCatB = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+					src="https://conozcasucanton.com/wp-content/uploads/sites/11/2016/06/turubari.jpg"
+					witdh="900px"
+					heigth="900px"
 				/>
 				<Card.Body>
 					<Card.Title>
@@ -24,7 +26,9 @@ const CardCatB = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+					src="https://www.sancarlosdigital.com/wp-content/uploads/2018/10/Aguas-terma%C3%B1es.jpg"
+					witdh="900px"
+					heigth="900px"
 				/>
 				<Card.Body>
 					<Card.Title>
@@ -39,7 +43,9 @@ const CardCatB = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2mixbmSL0x86owchdeNponfEAMHYr7oK15g&usqp=CAU"
+					src="https://www.proimagencostarica.com/wp-content/uploads/2019/03/borrar-carnaval-puntarenas-2.jpg"
+					witdh="900px"
+					heigth="900px"
 				/>
 				<Card.Body>
 					<Card.Title>

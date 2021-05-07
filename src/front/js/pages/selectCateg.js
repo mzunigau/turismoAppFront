@@ -33,15 +33,6 @@ const SelectCateg = () => {
 	return (
 		<div className="body-categ">
 			<Container>
-				<Button
-					onClick={() => {
-						actions.logOut();
-						if (store.logOut == true) {
-							history.push("/login");
-						}
-					}}>
-					LogOut
-				</Button>
 				<div className="title-categ text-center">
 					<h2>
 						<i>Select the Categories of preference</i>

@@ -1,19 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Card, Container, CardDeck, Button, Col, ButtonToolbar, Row, Image } from "react-bootstrap";
 import { Context } from "../../store/appContext";
 
-const CatDest = () => {
+export const CatDest = () => {
+	const { id } = useParams();
 	const { actions, store } = useContext(Context);
 
 	useEffect(() => {
-		actions.getSitios();
+		actions.getCategorias();
+		actions.getUsuario();
 	}, []);
 
 	return (
 		<Container>
 			<Row>
-				{store.sitios.map((item, index) => {
+				{store.categorias.sitios.map((item, index) => {
 					return (
 						<Col key={index}>
 							<br />
@@ -36,5 +38,3 @@ const CatDest = () => {
 		</Container>
 	);
 };
-
-export default CatDest;

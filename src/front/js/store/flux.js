@@ -22,6 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setProfile: null,
 			sitios: [],
 			sitiosID: null,
+			categID: null,
 			usuario: {}
 		},
 
@@ -200,6 +201,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(data => {
 						console.log(data, "Marco");
 						setStore({ sitiosID: data });
+					})
+
+					.catch(err => {
+						console.log("error", err);
+					});
+			},
+
+			getCategID: sitios => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				fetch(`${store.newUrl}/categorias/${sitios}`, {
+					method: "GET",
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: `Bearer	${token}`
+					}
+				})
+					.then(resp => {
+						return resp.json();
+					})
+					.then(data => {
+						console.log(data, "Marco");
+						setStore({ categID: data.result.categorias.sitios });
 					})
 
 					.catch(err => {
