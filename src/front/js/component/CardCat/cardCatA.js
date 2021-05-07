@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardDeck, Button } from "react-bootstrap";
+import { Card, CardDeck, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const CardCatA = () => {
@@ -8,7 +8,9 @@ const CardCatA = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+					src="https://www.momondo.es/discover/wp-content/uploads/sites/242/2017/12/dest_costa-rica_limon_puerto-viejo-de-talamanca_gettyimages-480157204_universal_within-usage-period_39238.jpg"
+					witdh="900px"
+					heigth="900px"
 				/>
 				<Card.Body>
 					<Card.Title>
@@ -24,7 +26,9 @@ const CardCatA = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+					src="https://viajes.nationalgeographic.com.es/medio/2019/05/24/la-tragedia-de-1968_98177bd5_1254x837.jpg"
+					witdh="900px"
+					heigth="800px"
 				/>
 				<Card.Body>
 					<Card.Title>
@@ -39,7 +43,9 @@ const CardCatA = () => {
 			<Card>
 				<Card.Img
 					variant="top"
-					src="https://www.procomer.com/wp-content/uploads/2020/01/porque_costarica.jpg"
+					src="https://p4.wallpaperbetter.com/wallpaper/729/1010/515/nature-costa-rica-rivers-1920x1200-nature-rivers-hd-art-wallpaper-preview.jpg"
+					witdh="900px"
+					heigth="900px"
 				/>
 				<Card.Body>
 					<Card.Title>

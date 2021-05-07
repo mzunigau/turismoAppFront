@@ -12,7 +12,11 @@ export const Single = () => {
 	const params = useParams();
 	let id = params.uid;
 
-	const sitio = store.sitios.filter(sitios => sitios.id == id);
+    const sitio = store.sitios.filter(sitios => sitios.id == id);
+    
+    useEffect(() => {
+		actions.getSitiosID(id);
+	}, []);
 
 	return (
 		<Container>
