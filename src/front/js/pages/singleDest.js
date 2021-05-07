@@ -10,8 +10,24 @@ import { Context } from "../store/appContext";
 export const Single = () => {
 	const { store, actions } = useContext(Context);
 	const { id } = useParams();
+	const [favoritos, setFavoritos] = useState("");
+
+	const CheckFavoritos = (event, favSelected) => {
+		if (event.target.checked == true) {
+			store.usuario.sitios_favoritos.push(favSelected);
+
+			console.log(store.usuario, "checked");
+		} else {
+			store.usuario.sitios_favoritos.splice(
+				store.usuario.sitios_favoritos.findIndex(v => v.id === favSelected.id),
+				1
+			);
+			console.log(store.usuario, "unchecked");
+		}
+	};
 
 	useEffect(() => {
+		actions.getUsuario();
 		actions.getSitiosID(id);
 	}, []);
 	console.log(id, "este es el id");
@@ -28,10 +44,22 @@ export const Single = () => {
 						<img src={store.sitiosID && store.sitiosID.portada} width="1050px" />
 						<br />
 						<br />
-						<div className="resumen-propiedad">
-							<img src={logo_bed} alt="Icono Hotel" width="40px" height="40px" />
-							<img src={Logobank} alt="icono Bank" width="40px" height="40px" />
-							<img src={LogoDining} alt="icono Dining" width="40px" height="40px" />
+
+						<div className="ubicacion">
+							<i className="fas fa-map-marker-alt">
+								<strong> Ubicación:</strong>
+							</i>
+							<p>{store.sitiosID && store.sitiosID.gmaps}</p>
+						</div>
+						<div className="descripcion">
+							<p>{store.sitiosID && store.sitiosID.descripcion}</p>
+						</div>
+						<div>
+							<div className="resumen-propiedad">
+								<img className="mr-3" src={logo_bed} alt="Icono Hotel" width="40px" height="40px" />
+								<img className="mr-3" src={Logobank} alt="icono Bank" width="40px" height="40px" />
+								<img className="mr-3" src={LogoDining} alt="icono Dining" width="40px" height="40px" />
+							</div>
 						</div>
 					</>
 				)}

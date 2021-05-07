@@ -39,7 +39,7 @@ const AllCateg = () => {
 									<Image src={item.portada} rounded className="card-img-top" />
 									<Card.Body>
 										<Card.Title>{item.nombre}</Card.Title>
-										<Link>
+										<Link to={`/singleDest/${item.id}`}>
 											<Button variant="primary">Go to details</Button>
 										</Link>
 										<input

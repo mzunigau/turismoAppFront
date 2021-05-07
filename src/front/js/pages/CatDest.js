@@ -25,9 +25,13 @@ export const CatDest = () => {
 											<Link to={`/singleDest/${id}`}>
 												<Button variant="primary">Go Details</Button>
 											</Link>
-											<Button variant="outline-dark">
-												<i className="far fa-heart" />
-											</Button>
+											<input
+												className="check-input"
+												type="checkbox"
+												value={false}
+												id="invalidCheck2"
+												onChange={e => CheckFavoritos(e, item)}
+											/>
 										</Card.Body>
 									</Card>
 								</Col>
