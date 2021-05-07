@@ -56,9 +56,9 @@ export const Single = () => {
 						</div>
 						<div>
 							<div className="resumen-propiedad">
-								<img src={logo_bed} alt="Icono Hotel" width="40px" height="40px" />
-								<img src={Logobank} alt="icono Bank" width="40px" height="40px" />
-								<img src={LogoDining} alt="icono Dining" width="40px" height="40px" />
+								<img className="mr-3" src={logo_bed} alt="Icono Hotel" width="40px" height="40px" />
+								<img className="mr-3" src={Logobank} alt="icono Bank" width="40px" height="40px" />
+								<img className="mr-3" src={LogoDining} alt="icono Dining" width="40px" height="40px" />
 							</div>
 						</div>
 					</>
