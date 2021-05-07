@@ -2,7 +2,7 @@ import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Container, InputGroup, Button, Image, Row, FormGroup, Col, Form } from "react-bootstrap";
 import { Link, useHistory, Redirect } from "react-router-dom";
-import LogoImg from "../../img/Imagen1.png";
+import ColibriIso from "../../img/ColibriIso.png";
 import "../../styles/login.scss";
 
 const Login = () => {
@@ -13,7 +13,7 @@ const Login = () => {
 	return !localStorage.token ? (
 		<div id="body-login">
 			<Container id="contenedor1" className="text-center p-3">
-				<Image src={LogoImg} width={200} height={200} />
+				<Image src={ColibriIso} width="120px" height="100%" />
 				<Row className="justify-content-center">
 					<Col className="col-md-4 formulary">
 						<Form action="">

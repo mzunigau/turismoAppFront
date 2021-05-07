@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { Image } from "react-bootstrap";
+import LogoApp from "../../img/ColibrisLogo.png";
 
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+		<Image src={LogoApp} width="120px" height="100%" />
+		<h6>Siempre buscando por ti</h6>
 	</footer>
 );

@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.scss";
-
 import CarouselCat from "../component/CarouselCat/carouselCat";
 import ButtonCat from "../component/ButtonCat/buttonCat";
 import { TabNav } from "../component/PillsCat/tabNav";
