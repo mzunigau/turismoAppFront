@@ -58,7 +58,8 @@ def createUser():
     userNew = Usuario(nombre=nombre, email=email, password=password)
     db.session.add(userNew)
     db.session.commit()
-    return jsonify(Usuario.serialize(userNew)), 200
+    access_token = create_access_token(identity={"email":email})
+    return jsonify({ "token": access_token, "usuario": Usuario.serialize(userNew) }), 200
 
 @api.route('/usuarios/<int:id>', methods=['PUT'])
 @jwt_required()

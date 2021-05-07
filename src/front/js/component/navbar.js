@@ -8,11 +8,15 @@ import LogoApp from "../../img/ColibrisLogo.png";
 export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
-			<Link to="/">
+			<Link to="/home">
 				<Image src={LogoApp} width="120px" height="100%" />
 			</Link>
 
 			<ButtonFav />
+
+			<Link to="/selectCateg">
+				<p>Mis Categorías</p>
+			</Link>
 
 			<DropLogin />
 		</nav>

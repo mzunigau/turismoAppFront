@@ -8,7 +8,7 @@ import LogoApp from "../../img/CRideLogo.png"
 export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light">
-			<Link to="/">
+			<Link to="/home">
                 <Image src={LogoApp} width="200px" height="200px" />
 			</Link>
 			<DropLogin />

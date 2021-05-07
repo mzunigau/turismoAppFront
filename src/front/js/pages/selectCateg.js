@@ -2,7 +2,7 @@ import { Context } from "../store/appContext";
 import React, { useState, useContext, useEffect } from "react";
 import { Card, Row, Container, Col, Image, Button } from "react-bootstrap";
 import imag from "../../img/playa.png";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import "../../styles/categories.scss";
 
 const SelectCateg = () => {
@@ -61,7 +61,9 @@ const SelectCateg = () => {
 					})}
 				</Row>
 				<div className="text-center">
-					<Button onClick={() => actions.usuarioUpdated()}>Listo</Button>
+					<Link to="/login">
+						<Button onClick={() => actions.usuarioUpdated()}>Listo</Button>
+					</Link>
 				</div>
 			</Container>
 		</div>

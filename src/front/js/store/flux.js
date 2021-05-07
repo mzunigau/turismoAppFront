@@ -23,7 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			sitios: [],
 			sitiosID: null,
 			categID: null,
-			usuario: {}
+			usuario: {},
+			usereg: null
 		},
 
 		actions: {
@@ -234,7 +235,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			usuarioUpdated: () => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(process.env.BACKEND_URL + `$/api/usuarios/${store.usuario.id}`, {
+				fetch(process.env.BACKEND_URL + `/api/usuarios/${store.usuario.id}`, {
 					method: "PUT",
 					headers: {
 						"Content-Type": "application/json",

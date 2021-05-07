@@ -2,7 +2,7 @@ import { Context } from "../store/appContext";
 import React, { useContext, useState, useEffect } from "react";
 import { Container, InputGroup, Button, Image, Row, FormGroup, Col, Form } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import LogoImg from "../../img/Imagen1.png";
+import ColibriIso from "../../img/ColibriIso.png";
 import "../../styles/login.scss";
 
 const Register = () => {
@@ -16,14 +16,14 @@ const Register = () => {
 	useEffect(() => {
 		if (store.register) {
 			alert("successful register");
-			history.push("/");
+			// history.push("/selectCateg");
 		}
 	});
 
 	return (
 		<div id="body-login">
 			<Container id="contenedor1" className="text-center p-3">
-				<Image src={LogoImg} width={200} height={200} />
+				<Image src={ColibriIso} width="120px" height="100%" />
 				<Row className="justify-content-center">
 					<Col className="col-md-4 formulary">
 						<Form action="">
@@ -38,23 +38,25 @@ const Register = () => {
 									onChange={e => setEmail(e.target.value)}
 								/>
 							</FormGroup>
+
 							<FormGroup className="mx-sm-4 pb-3">
 								<input
 									type="text"
 									className="form-control"
-									placeholder="Username"
+									placeholder="Nombre"
 									onChange={e => setname(e.target.value)}
 								/>
 							</FormGroup>
-							<FormGroup className="mx-sm-4 pb-3">
+
+							{/* <FormGroup className="mx-sm-4 pb-3">
 								<input type="text" className="form-control" placeholder="Country" />
-							</FormGroup>
-							<FormGroup controlId="exampleForm.ControlSelect1">
+							</FormGroup> */}
+							{/* <FormGroup controlId="exampleForm.ControlSelect1">
 								<Form.Control as="select">
 									<option>Select Role</option>
 									<option>Tourist</option>
 								</Form.Control>
-							</FormGroup>
+							</FormGroup> */}
 
 							<FormGroup className="mx-sm-4 pb-3">
 								<input
@@ -65,13 +67,15 @@ const Register = () => {
 								/>
 							</FormGroup>
 							<FormGroup className="mx-sm-4 pb-3">
-								<Button
-									className="btn btn-block signup"
-									onClick={() => {
-										actions.registerInit(email, name, password);
-									}}>
-									Register
-								</Button>
+								<Link to="/login">
+									<Button
+										className="btn btn-block signup"
+										onClick={() => {
+											actions.registerInit(email, name, password);
+										}}>
+										Register
+									</Button>
+								</Link>
 							</FormGroup>
 						</Form>
 					</Col>
