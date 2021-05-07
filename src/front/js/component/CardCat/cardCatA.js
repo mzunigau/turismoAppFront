@@ -14,7 +14,7 @@ const CardCatA = () => {
 				/>
 				<Card.Body>
 					<Card.Title>
-						<Link to="/homeCatDest">Playa</Link>
+						<Link to="/CatDest/1">Playa</Link>
 					</Card.Title>
 					<Card.Text>
 						This is a wider card with supporting text below as a natural lead-in to additional content. This
@@ -32,7 +32,7 @@ const CardCatA = () => {
 				/>
 				<Card.Body>
 					<Card.Title>
-						<Link to="/homeCatDest">Montaña</Link>
+						<Link to={`/CatDest/2`}>Montaña</Link>
 					</Card.Title>
 					<Card.Text>
 						This card has supporting text below as a natural lead-in to additional content.{" "}
@@ -49,7 +49,7 @@ const CardCatA = () => {
 				/>
 				<Card.Body>
 					<Card.Title>
-						<Link to="/homeCatDest">Ríos</Link>
+						<Link to="/CatDest/3">Ríos</Link>
 					</Card.Title>
 					<Card.Text>
 						This is a wider card with supporting text below as a natural lead-in to additional content. This

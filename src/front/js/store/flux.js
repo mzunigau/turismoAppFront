@@ -208,10 +208,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					});
 			},
 
-			getCategID: sitios => {
+			getCategID: id => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
-				fetch(`${store.newUrl}/categorias/${sitios}`, {
+				fetch(`${store.newUrl}/categorias/${id}`, {
 					method: "GET",
 					headers: {
 						"Content-Type": "application/json",
@@ -223,7 +223,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then(data => {
 						console.log(data, "Marco");
-						setStore({ categID: data.result.categorias.sitios });
+						setStore({ categID: data });
 					})
 
 					.catch(err => {
