@@ -81,6 +81,7 @@ class Sitio(db.Model):
     nombre = db.Column(db.String(255), nullable=False)
     portada = db.Column(db.String(255))
     ubicacion = db.Column(db.String(1000))
+    descripcion= db.Column(db.String(1000))
     tipo_costo = db.Column(db.Boolean)
     costo_min = db.Column(db.Integer)
     costo_max = db.Column(db.Integer)
@@ -103,6 +104,7 @@ class Sitio(db.Model):
             "nombre": self.nombre,
             "portada": self.portada,
             "ubicacion": self.ubicacion,
+            "descripcion": self.descripcion,
             "tipo_costo": self.tipo_costo,
             "costo_min": self.costo_min,
             "costo_max": self.costo_max,

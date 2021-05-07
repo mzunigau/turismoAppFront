@@ -47,12 +47,12 @@ export const Single = () => {
 
 						<div className="ubicacion">
 							<i className="fas fa-map-marker-alt">
-								<strong>Ubicación:</strong>
+								<strong> Ubicación:</strong>
 							</i>
-							<p>{store.sitiosID && store.sitiosID.Gmaps}</p>
+							<p>{store.sitiosID && store.sitiosID.gmaps}</p>
 						</div>
 						<div className="descripcion">
-							<p>{store.sitiosID && store.sitiosID.ubicacion}</p>
+							<p>{store.sitiosID && store.sitiosID.descripcion}</p>
 						</div>
 						<div>
 							<div className="resumen-propiedad">
