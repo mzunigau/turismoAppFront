@@ -12,7 +12,7 @@ export const Home = () => {
 
 	return (
 		<div className="bg-home text-center mt-5">
-			<h1>Costa Rica Ride</h1>
+			<h1>Colibris</h1>
 			<CarouselCat />
 			<h1>Lugares más populares</h1>
 			<TabNav />
